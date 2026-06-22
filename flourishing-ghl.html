@@ -1088,45 +1088,45 @@ body:    JSON.stringify(payload)
 
 // ============================================================
 // RESULTS ACTIONS
-// ============================================================
+// =======================================================================
 function openCalendly() {
-Calendly.initPopupWidget({url: 'https://calendly.com/phil-voysey/life-design-coaching'});
-return false;
+    Calendly.initPopupWidget({url: 'https://calendly.com/phil-voysey/life-design-coaching'});
+    return false;
 }
 
 function backToQuestions() {
-showScreen('s-questions');
-renderQ(currentQ);
+    showScreen('s-questions');
+    renderQ(currentQ);
 }
 
 function startAgain() {
-answers = new Array(QUESTIONS.length).fill(null);
-currentQ = 0;
-showScreen('s-intro');
+    answers  = new Array(QUESTIONS.length).fill(null);
+    currentQ = 0;
+    showScreen('s-intro');
 }
 
 function shareLink() {
-var url = window.location.href;
-var title = 'Flourishing Survey — Possibility of Us';
-if (navigator.share) {
-navigator.share({ title: title, url: url });
-} else {
-navigator.clipboard.writeText(url).then(function() {
-alert('Link copied to clipboard — paste it to share.');
-}).catch(function() {
-prompt('Copy this link to share:', url);
-});
-}
+    var url   = window.location.href;
+    var title = 'Flourishing Survey — Possibility of Us';
+    if (navigator.share) {
+        navigator.share({ title: title, url: url });
+    } else {
+        navigator.clipboard.writeText(url).then(function() {
+            alert('Link copied to clipboard — paste it to share.');
+        }).catch(function() {
+            prompt('Copy this link to share:', url);
+        });
+    }
 }
 
 // ============================================================
 // UTILITY
 // ============================================================
 function showScreen(id) {
-document.querySelectorAll('.screen').forEach(function(s) {
-s.classList.remove('active');
-});
-document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.screen').forEach(function(s) {
+        s.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
 }
 </script>
 </body>
