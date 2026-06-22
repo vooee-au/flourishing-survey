@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flourishing Survey | Possibility of Us</title>
+<meta property="og:title" content="Flourishing Survey | Possibility of Us">
+<meta property="og:description" content="Six honest questions. About three minutes. Find out where you really are.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<style>
+:root {
+--teal: #00AAC3;
+--navy: #1A3F8B;
+--midnight: #011627;
+--slate: #353F47;
+--offwhite: #FAFAF8;
+--warm-brown: #2F2927;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: 'Montserrat', Arial, sans-serif;
+background: var(--offwhite);
+min-height: 100vh;
+color: var(--midnight);
+}
+
+/* ---- Header ---- */
+.site-header {
+background: var(--teal);
+padding: 16px 32px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.site-header a {
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 17px;
+color: white;
+text-decoration: none;
+letter-spacing: 0.3px;
+display: flex;
+align-items: center;
+}
+.site-header a img {
+height: 40px;
+width: auto;
+}
+.site-header span {
+font-size: 13px;
+color: rgba(255,255,255,0.8);
+font-style: italic;
+}
+
+/* ---- Screens ---- */
+.screen { display: none; }
+.screen.active {
+display: flex;
+flex-direction: column;
+min-height: calc(100vh - 57px);
+animation: fadeUp 0.35s ease;
+}
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- INTRO ---- */
+.intro-hero {
+background:
+linear-gradient(rgba(1, 22, 39, 0.40), rgba(1, 22, 39, 0.40)),
+url('YOUR_HERO_IMAGE_URL') center / cover no-repeat;
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 80px 32px;
+text-align: center;
+color: white;
+}
+.intro-hero h1 {
+font-family: 'Oswald', Arial, sans-serif;
+font-size: 54px;
+font-weight: 400;
+text-transform: uppercase;
+letter-spacing: 2px;
+line-height: 1.15;
+margin-bottom: 28px;
+}
+.intro-hero p {
+font-size: 18px;
+line-height: 1.75;
+max-width: 580px;
+margin: 0 auto 14px;
+opacity: 0.95;
+}
+.intro-meta {
+font-size: 13px;
+opacity: 0.65;
+margin-bottom: 40px;
+letter-spacing: 0.5px;
+}
+
+/* ---- QUESTION, SATISFACTION & EMAIL SCREENS — dark Machu Picchu background ---- */
+#s-questions, #s-satisfaction, #s-email {
+background:
+linear-gradient(rgba(1, 22, 39, 0.58), rgba(1, 22, 39, 0.58)),
+url('YOUR_BACKGROUND_IMAGE_URL') center / cover no-repeat;
+}
+
+/* ---- Satisfaction scale — match the white option-btn style from Q1–Q6 ---- */
+#s-satisfaction .sat-row { background: rgba(255,255,255,0.93); border: none; border-radius: 10px; margin-bottom: 5px; padding: 12px 14px; }
+#s-satisfaction .sat-row:first-child { border-top: none; }
+#s-satisfaction .sat-category { color: #01162A; font-size: 14px; font-weight: 600; }
+#s-satisfaction .sat-sub { color: #4a6070; opacity: 1; font-size: 11px; }
+#s-satisfaction .sat-num { background: white; border-color: #C5D0D8; color: #01162A; font-weight: 600; font-size: 13px; }
+#s-satisfaction .sat-num:hover { background: #e8f7f5; border-color: var(--teal); color: var(--teal); }
+#s-satisfaction .sat-num.sel { background: var(--teal); border-color: var(--teal); color: white; }
+#s-satisfaction .sat-score-cell { color: var(--teal); font-size: 17px; font-weight: 700; }
+#s-satisfaction .sat-score-cell .sat-dash { color: #8aa0b0; opacity: 1; }
+#s-satisfaction .sat-note-text { color: rgba(255,255,255,0.75); opacity: 1; font-size: 12px; }
+#s-satisfaction .sat-intro { color: rgba(255,255,255,0.9); font-size: 15px; }
+
+/* ---- QUESTIONS ---- */
+.question-wrap {
+max-width: 880px;
+margin: 0 auto;
+padding: 52px 16px 40px;
+width: 100%;
+flex: 1;
+}
+.progress-label {
+font-size: 12px;
+font-weight: 700;
+color: var(--teal);
+text-transform: uppercase;
+letter-spacing: 1.2px;
+margin-bottom: 10px;
+}
+.progress-track {
+width: 100%;
+height: 3px;
+background: rgba(255, 255, 255, 0.25);
+border-radius: 3px;
+margin-bottom: 48px;
+overflow: hidden;
+}
+.progress-fill {
+height: 100%;
+background: var(--teal);
+border-radius: 3px;
+transition: width 0.45s ease;
+}
+.question-text {
+font-size: 24px;
+font-weight: 600;
+line-height: 1.45;
+color: white;
+margin-bottom: 32px;
+min-height: 105px;
+}
+.options {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 11px;
+margin-bottom: 40px;
+}
+#q-options li {
+display: flex;
+}
+#q-options li .opt-btn {
+flex: 1;
+}
+
+.opt-btn {
+width: 100%;
+padding: 17px 22px;
+text-align: left;
+background: rgba(255, 255, 255, 0.92);
+border: 2px solid rgba(255, 255, 255, 0.0);
+border-radius: 12px;
+font-family: 'Montserrat', sans-serif;
+font-size: 15px;
+font-weight: 500;
+color: var(--slate);
+cursor: pointer;
+transition: border-color 0.18s, background 0.18s, color 0.18s;
+line-height: 1.45;
+}
+.opt-btn:hover { border-color: var(--teal); color: var(--midnight); background: white; }
+.opt-btn.selected { border-color: var(--teal); background: var(--teal); color: white; font-weight: 600; }
+
+.q-nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.btn-back {
+background: none;
+border: none;
+color: rgba(255, 255, 255, 0.55);
+font-family: 'Montserrat', sans-serif;
+font-size: 14px;
+cursor: pointer;
+padding: 6px 0;
+}
+.btn-back:hover { color: white; }
+.btn-next {
+background: var(--teal);
+color: white;
+border: none;
+padding: 14px 34px;
+border-radius: 75px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 15px;
+cursor: pointer;
+opacity: 0.35;
+pointer-events: none;
+transition: opacity 0.2s, transform 0.2s, background 0.2s;
+}
+.btn-next.on { opacity: 1; pointer-events: all; }
+.btn-next.on:hover { background: #009ab1; transform: translateY(-1px); }
+
+/* ---- EMAIL BACK NAV ---- */
+.email-nav {
+padding: 20px 24px 0;
+}
+.email-nav .btn-back {
+color: rgba(255, 255, 255, 0.55);
+}
+.email-nav .btn-back:hover {
+color: white;
+}
+
+/* ---- EMAIL CAPTURE ---- */
+.email-wrap {
+max-width: 520px;
+margin: 0 auto;
+padding: 72px 24px;
+text-align: center;
+flex: 1;
+}
+.email-wrap h2 {
+font-family: 'Oswald', sans-serif;
+font-size: 38px;
+font-weight: 400;
+text-transform: uppercase;
+color: white;
+letter-spacing: 1px;
+margin-bottom: 14px;
+}
+.email-wrap > p {
+font-size: 16px;
+color: rgba(255, 255, 255, 0.85);
+line-height: 1.65;
+margin-bottom: 36px;
+}
+.field { margin-bottom: 14px; text-align: left; }
+.field label {
+display: block;
+font-size: 11px;
+font-weight: 700;
+color: rgba(255, 255, 255, 0.75);
+text-transform: uppercase;
+letter-spacing: 0.8px;
+margin-bottom: 6px;
+}
+.field input {
+width: 100%;
+padding: 14px 16px;
+border: 2px solid rgba(255, 255, 255, 0.3);
+border-radius: 10px;
+font-family: 'Montserrat', sans-serif;
+font-size: 16px;
+color: var(--midnight);
+background: rgba(255, 255, 255, 0.92);
+transition: border-color 0.18s;
+}
+.field input:focus { outline: none; border-color: var(--teal); }
+.privacy {
+font-size: 11px;
+color: rgba(255, 255, 255, 0.45);
+line-height: 1.55;
+margin-top: 10px;
+}
+.btn-submit {
+width: 100%;
+background: var(--navy);
+color: white;
+border: none;
+padding: 16px;
+border-radius: 75px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 16px;
+cursor: pointer;
+margin-top: 24px;
+transition: background 0.2s, transform 0.2s;
+}
+.btn-submit:hover { background: #1e4ba5; transform: translateY(-1px); }
+
+/* ---- RESULTS ---- */
+.result-wrap {
+max-width: 660px;
+margin: 0 auto;
+padding: 64px 24px 80px;
+flex: 1;
+}
+.result-eyebrow {
+font-size: 12px;
+font-weight: 700;
+color: var(--teal);
+text-transform: uppercase;
+letter-spacing: 1.5px;
+margin-bottom: 10px;
+}
+.result-heading {
+font-family: 'Oswald', sans-serif;
+font-size: 38px;
+font-weight: 400;
+text-transform: uppercase;
+color: var(--navy);
+line-height: 1.2;
+margin-bottom: 32px;
+}
+.result-card {
+background: white;
+border-radius: 14px;
+padding: 34px 36px;
+border-left: 4px solid var(--teal);
+box-shadow: 0 2px 18px rgba(0,0,0,0.06);
+margin-bottom: 44px;
+}
+.result-card p {
+font-size: 17px;
+line-height: 1.85;
+color: var(--warm-brown);
+}
+.divider {
+border: none;
+border-top: 1px solid #E3E6EA;
+margin-bottom: 40px;
+}
+
+/* ---- RESULTS ACTIONS ---- */
+.btn-book {
+display: block;
+width: 100%;
+background: var(--teal);
+color: white;
+border: none;
+padding: 18px;
+border-radius: 75px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 17px;
+cursor: pointer;
+margin-bottom: 20px;
+transition: background 0.2s, transform 0.2s;
+}
+.btn-book:hover { background: #009ab1; transform: translateY(-1px); }
+.results-actions {
+display: flex;
+justify-content: center;
+gap: 32px;
+margin-bottom: 48px;
+}
+.btn-text {
+background: none;
+border: none;
+font-family: 'Montserrat', sans-serif;
+font-size: 14px;
+font-weight: 600;
+color: var(--teal);
+cursor: pointer;
+padding: 6px 0;
+text-decoration: underline;
+text-underline-offset: 3px;
+}
+.btn-text:hover { color: var(--navy); }
+
+/* ---- SATISFACTION SCALE ---- */
+.sat-section {
+margin-bottom: 44px;
+}
+.sat-title {
+font-family: 'Oswald', sans-serif;
+font-size: 26px;
+font-weight: 400;
+text-transform: uppercase;
+color: var(--navy);
+margin-bottom: 10px;
+}
+.sat-intro {
+font-size: 15px;
+color: var(--slate);
+line-height: 1.65;
+margin-bottom: 28px;
+}
+.sat-row {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 13px 0;
+border-bottom: 1px solid #E3E6EA;
+}
+.sat-row:first-child {
+border-top: 1px solid #E3E6EA;
+}
+.sat-label {
+flex: 0 0 150px;
+}
+.sat-category {
+font-size: 13px;
+font-weight: 700;
+color: var(--midnight);
+line-height: 1.3;
+}
+.sat-sub {
+font-size: 10px;
+color: var(--slate);
+opacity: 0.65;
+margin-top: 2px;
+line-height: 1.4;
+}
+.sat-nums {
+display: flex;
+gap: 3px;
+flex: 1;
+}
+.sat-num {
+flex: 1;
+min-width: 0;
+aspect-ratio: 1;
+border: 1.5px solid #D0D5DB;
+border-radius: 6px;
+background: white;
+font-family: 'Montserrat', sans-serif;
+font-size: 11px;
+font-weight: 500;
+color: var(--slate);
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.15s;
+padding: 0;
+}
+.sat-num:hover { border-color: var(--teal); color: var(--teal); }
+.sat-num.sel { background: var(--teal); border-color: var(--teal); color: white; font-weight: 700; }
+.sat-score-cell {
+flex: 0 0 44px;
+text-align: right;
+font-size: 15px;
+font-weight: 700;
+color: var(--teal);
+min-width: 44px;
+}
+.sat-score-cell .sat-dash { opacity: 0.3; }
+.sat-note-text {
+font-size: 11px;
+color: var(--slate);
+opacity: 0.55;
+margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+.sat-label { flex: 0 0 90px; }
+.sat-category { font-size: 11px; }
+.sat-sub { font-size: 9px; }
+.sat-num { font-size: 10px; border-radius: 4px; }
+.sat-score-cell { flex: 0 0 32px; min-width: 32px; font-size: 13px; }
+}
+
+/* ---- Footer ---- */
+.site-footer {
+background: var(--midnight);
+color: rgba(255,255,255,0.55);
+text-align: center;
+padding: 22px;
+font-size: 12px;
+}
+.site-footer a { color: var(--teal); text-decoration: none; }
+
+/* ---- Shared buttons ---- */
+.btn-primary {
+background: var(--navy);
+color: white;
+border: none;
+padding: 15px 38px;
+border-radius: 75px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 16px;
+cursor: pointer;
+transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: #1e4ba5; transform: translateY(-1px); }
+
+/* ---- Mobile ---- */
+@media (max-width: 600px) {
+.intro-hero h1 { font-size: 36px; }
+.intro-hero p { font-size: 16px; }
+.question-text { font-size: 20px; }
+.opt-btn { font-size: 14px; padding: 15px 18px; }
+.result-heading { font-size: 28px; }
+.result-card p { font-size: 15px; }
+.result-card { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+<a href="https://possibilityofus.com.au">
+<img src="YOUR_LOGO_URL" alt="Possibility of Us" onerror="this.style.display='none'; this.parentNode.appendChild(document.createTextNode('Possibility of Us'))">
+</a>
+<span>Live Bold. Live Long.</span>
+</header>
+
+<!-- ===================== SCREEN: INTRO ===================== -->
+<div id="s-intro" class="screen active">
+<div class="intro-hero">
+<h1>How Are You,<br>Really?</h1>
+<p>Most of us carry two versions of our life — the one we'd describe at a dinner party, and the one we'd admit to if someone really asked.</p>
+<p>This assessment is about the second one.</p>
+<p class="intro-meta">Six honest questions &nbsp;·&nbsp; About three minutes</p>
+<button class="btn-primary" onclick="startAssessment()">Start the Assessment</button>
+</div>
+</div>
+
+<!-- ===================== SCREEN: QUESTIONS ===================== -->
+<div id="s-questions" class="screen">
+<div class="question-wrap">
+<div class="progress-label" id="prog-label">Question 1 of 6</div>
+<div class="progress-track">
+<div class="progress-fill" id="prog-fill" style="width:16.6%"></div>
+</div>
+<div class="question-text" id="q-text"></div>
+<ul class="options" id="q-options"></ul>
+<div class="q-nav">
+<button class="btn-back" id="btn-back" onclick="goBack()">&#8592; Back</button>
+<button class="btn-next" id="btn-next" onclick="goNext()">Continue &#8594;</button>
+</div>
+</div>
+</div>
+
+<!-- ===================== SCREEN: SATISFACTION SCALE ===================== -->
+<div id="s-satisfaction" class="screen">
+<div class="question-wrap">
+<div class="progress-label">Question 7 of 7</div>
+<div class="progress-track">
+<div class="progress-fill" style="width:100%"></div>
+</div>
+<div class="question-text" style="min-height:auto; margin-bottom:16px;">How satisfied are you — really?</div>
+<p class="sat-intro" style="margin-bottom:24px;">Score yourself out of ten for each area and then hit continue to see your results.</p>
+<div id="sat-table"></div>
+<p class="sat-note-text" style="margin-bottom:32px;">1 = very dissatisfied &nbsp;&nbsp;·&nbsp;&nbsp; 10 = fully satisfied</p>
+<div class="q-nav">
+<button class="btn-back" onclick="backFromSat()">&#8592; Back</button>
+<button class="btn-next" id="btn-sat-continue" onclick="satContinue()">Continue &#8594;</button>
+</div>
+</div>
+</div>
+
+<!-- ===================== SCREEN: EMAIL ===================== -->
+<div id="s-email" class="screen">
+<div class="email-nav">
+<button class="btn-back" onclick="backToQuestions()">&#8592; Back</button>
+</div>
+<div class="email-wrap">
+<h2>Almost There</h2>
+<p>Enter your details and I'll share what your answers suggest — and where the conversation might go from here.</p>
+<form onsubmit="showResults(); return false;" autocomplete="on">
+<div class="field">
+<label for="inp-name">First Name</label>
+<input type="text" id="inp-name" name="given-name" placeholder="Your first name" autocomplete="given-name">
+</div>
+<div class="field">
+<label for="inp-email">Email Address</label>
+<input type="email" id="inp-email" name="email" placeholder="your@email.com" autocomplete="email">
+</div>
+<p class="privacy">Your details are shared with Phil and handled securely. They're used only for your assessment and any follow-up conversation — nothing else.</p>
+<button type="submit" class="btn-submit">See My Results &#8594;</button>
+</form>
+</div>
+</div>
+
+<!-- ===================== SCREEN: RESULTS ===================== -->
+<div id="s-result" class="screen">
+<div class="result-wrap">
+<div class="result-eyebrow">Your Assessment</div>
+<h2 class="result-heading" id="result-heading">Here's What Your Answers Suggest</h2>
+<div class="result-card">
+<p id="result-text"></p>
+</div>
+
+<hr class="divider">
+<button class="btn-book" onclick="openCalendly()">Book a Free Discovery Call &#8594;</button>
+<div class="results-actions">
+<button class="btn-text" onclick="startAgain()">&#8592; Start again</button>
+<button class="btn-text" onclick="shareLink()">Share with a friend &#8599;</button>
+</div>
+</div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+&copy; 2026 Possibility of Us &nbsp;&middot;&nbsp;
+<a href="https://possibilityofus.com.au">possibilityofus.com.au</a>
+</footer>
+
+<!-- ===================== GO HIGH LEVEL SETUP =====================
+This survey sends submissions to Go High Level via an inbound webhook.
+
+HOW TO SET IT UP (takes about 5 minutes):
+
+1. In GHL, go to Settings → Integrations → Webhooks
+2. Click "Add Webhook" and name it "Flourishing Survey"
+3. Copy the webhook URL it gives you
+4. Paste that URL in place of 'YOUR_GHL_WEBHOOK_URL' in the
+   submitToGHL() function in the script below (search for it)
+5. Save the file and re-upload it to your GHL site
+
+GHL will receive each submission as a contact with:
+  - First name, last name, email
+  - Tag: flourishing-survey
+  - All 6 question answers (Q1–Q6)
+  - The 10-area satisfaction scale ratings (Q7)
+  - The personalised response text
+
+You can then set up a GHL automation triggered by "Inbound Webhook"
+to send Phil a notification email, add the contact to a pipeline,
+or start a nurture sequence.
+============================================================ -->
+
+<!-- Calendly -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+// ============================================================
+// QUESTIONS
+// ============================================================
+const QUESTIONS = [
+{
+text: "If you step back and look at your life right now — not the version you'd describe at a dinner party, but the honest one — how are you doing?",
+options: [
+"Genuinely thriving",
+"Pretty good, but something's missing",
+"Going through the motions",
+"Stuck, and I know it"
+]
+},
+{
+text: "How much energy do you actually have for the life you want to be living?",
+options: [
+"Plenty — I feel like myself",
+"Some days yes, some days no",
+"I'm running on empty",
+"I've forgotten what that feels like"
+]
+},
+{
+text: "When you wake up in the morning, how often do you feel a clear sense of why it matters?",
+options: [
+"Most days",
+"Sometimes",
+"Rarely",
+"I'm still working that out"
+]
+},
+{
+text: "The people closest to you — do they know the real you?",
+options: [
+"Yes, fully",
+"Mostly",
+"Not really",
+"I'm not sure I know myself well enough to say"
+]
+},
+{
+text: "At your core, what matters most to you? Choose the one that feels most true.",
+options: [
+"Getting things right",
+"Being there for people",
+"Making something of yourself",
+"Being truly known and understood",
+"Making sense of the world",
+"Feeling safe and prepared",
+"Staying open to what's next",
+"Having the strength to handle anything",
+"Finding peace and keeping the harmony"
+]
+},
+{
+text: "What tends to get between you and the life you want?",
+options: [
+"I'm too hard on myself",
+"I put everyone else first",
+"I measure myself by what I've achieved",
+"I feel like nobody really gets me",
+"I need to understand everything before I act",
+"I worry about what could go wrong",
+"I'm always onto the next thing",
+"I don't like feeling out of control",
+"I go along with things to keep the peace"
+]
+}
+];
+
+// ============================================================
+// RESPONSE FRAGMENTS — written in Phil's voice
+// ============================================================
+
+// Q1 — Flourishing state (always used)
+const F_STATE = [
+// 0: Genuinely thriving
+"Something's going well for you right now — and that matters. But the fact that you took the time to do this suggests you're someone who doesn't settle for 'good enough' when something more is possible.",
+// 1: Something's missing
+"You've got the stability, maybe even the success. But something underneath doesn't quite add up. That gap — between the life you're living and the one you sense is possible — is actually a very good sign. It means you're paying attention.",
+// 2: Going through the motions
+"You're functioning. Getting through the days. But somewhere along the way, the aliveness has gone quiet. That's not a character flaw — it's a signal worth taking seriously.",
+// 3: Stuck
+"Stuck is an honest word, and it takes courage to name it. The good news is that being able to see it clearly is almost always the first step out of it."
+];
+
+// Q2 — Energy (used if not "plenty")
+const F_ENERGY = [
+"",
+"The inconsistency in your energy is often telling you something specific — that part of what you're doing is right, and part of it isn't.",
+"The energy drain is real. And usually it's pointing to something important that's out of alignment with what actually matters to you.",
+"When we've been running on empty for long enough, we lose the reference point. Part of this work is reconnecting with what once made you feel genuinely alive."
+];
+
+// Q3 — Purpose (used if not "most days")
+const F_PURPOSE = [
+"",
+"Having a sense of why it matters — even an imperfect one — is one of the foundations of a life well lived. If that's patchy right now, it's worth exploring.",
+"The absence of a clear 'why' is one of the most common things I work with. And one of the most solvable.",
+"Not having it figured out yet is actually a reasonable place to start. The question isn't 'what's my grand purpose?' — it's 'what makes me feel most like myself?'"
+];
+
+// Q4 — Connection (used if "not really" or "not sure")
+const F_CONNECTION = [
+"",
+"",
+"The gap between who you present and who you actually are takes energy to maintain — often more than we realise. Real connection starts when we let someone see past the edited version.",
+"The fact that you're not sure whether you know yourself well enough is one of the most honest answers you can give. That's not a problem — that's exactly where this kind of work begins."
+];
+
+// Q5 — Core driver (always used)
+const F_DRIVER = [
+// 0: Getting things right
+"You hold yourself to a high standard — which is one of your greatest strengths, and also the thing that makes the gap between where you are and where you think you should be feel especially sharp.",
+// 1: Being there for people
+"You give a lot to the people around you. The question worth sitting with is whether you're also giving yourself what you'd freely give someone else.",
+// 2: Making something of yourself
+"You're wired for achievement — and that drive has served you well. But at this stage of life, the deeper question often becomes: achieved what? In service of what, actually?",
+// 3: Being truly known
+"The longing to be genuinely seen and understood is one of the deepest human needs — and one of the most honest things a person can name as their core driver.",
+// 4: Making sense of the world
+"You process the world through understanding — clarity before action. The risk is that the thinking becomes a way of delaying the living.",
+// 5: Feeling safe and prepared
+"Loyalty and preparedness are genuine strengths. But if security is what you're most protecting, it's worth asking: secure enough to do what, exactly?",
+// 6: Staying open to what's next
+"You're energised by possibility — and there's always another horizon. The work at this stage is often about going deeper rather than wider. What would it mean to stop moving long enough to really arrive?",
+// 7: Having the strength to handle anything
+"Strength and self-reliance got you here. But the second half of life often asks something different — not less strength, but a willingness to be known in your vulnerability as well as your power.",
+// 8: Finding peace and keeping the harmony
+"You're someone who can hold space, see all sides, and make peace possible — and that's a real gift. But if harmony is what you're most protecting, it's worth asking: at what cost? And whose needs are quietly being set aside in the process? Often your own."
+];
+
+const F_CLOSING = "If any of this lands, I'd welcome a conversation. Not to fix anything — just to think it through together.";
+
+// ============================================================
+// SATISFACTION SCALE
+// ============================================================
+const SAT_CATEGORIES = [
+{ label: "Wellness", sub: "Mind · Body · Spirit" },
+{ label: "Love", sub: "Romance · Intimacy · Connection" },
+{ label: "Learning & Growth", sub: "Growth · Skills · Wisdom" },
+{ label: "Fun", sub: "Joy · Leisure · Recreation" },
+{ label: "Purpose", sub: "Meaning · Values · Contribution" },
+{ label: "Work", sub: "Career · Income · Achievement" },
+{ label: "Wealth", sub: "Finance · Security · Abundance" },
+{ label: "Family & Friends", sub: "Relationships · Support · Love" },
+{ label: "Community", sub: "Belonging · Service · Connection" },
+{ label: "Environment", sub: "Home · Space · Surroundings" }
+];
+
+var satScores = new Array(SAT_CATEGORIES.length).fill(null);
+
+function buildSatScale() {
+satScores = new Array(SAT_CATEGORIES.length).fill(null);
+var table = document.getElementById('sat-table');
+table.innerHTML = '';
+
+SAT_CATEGORIES.forEach(function(cat, rowIdx) {
+var row = document.createElement('div');
+row.className = 'sat-row';
+
+// Label
+var label = document.createElement('div');
+label.className = 'sat-label';
+label.innerHTML =
+'<div class="sat-category">' + cat.label + '</div>' +
+'<div class="sat-sub">' + cat.sub + '</div>';
+row.appendChild(label);
+
+// Number buttons
+var nums = document.createElement('div');
+nums.className = 'sat-nums';
+for (var n = 1; n <= 10; n++) {
+(function(num, ri) {
+var btn = document.createElement('button');
+btn.className = 'sat-num';
+btn.textContent = num;
+btn.type = 'button';
+btn.onclick = function() { satPick(ri, num); };
+nums.appendChild(btn);
+})(n, rowIdx);
+}
+row.appendChild(nums);
+
+// Score cell
+var scoreCell = document.createElement('div');
+scoreCell.className = 'sat-score-cell';
+scoreCell.id = 'sat-cell-' + rowIdx;
+scoreCell.innerHTML = '<span class="sat-dash">—</span>';
+row.appendChild(scoreCell);
+
+table.appendChild(row);
+});
+
+}
+
+function satPick(rowIdx, value) {
+satScores[rowIdx] = value;
+
+// Highlight selected button in this row
+var rows = document.querySelectorAll('.sat-row');
+var btns = rows[rowIdx].querySelectorAll('.sat-num');
+btns.forEach(function(btn, i) {
+btn.classList.toggle('sel', (i + 1) === value);
+});
+
+// Update row score display
+var cell = document.getElementById('sat-cell-' + rowIdx);
+cell.innerHTML = value;
+
+// Enable continue once all rows are filled
+var filled = satScores.filter(function(s) { return s !== null; });
+if (filled.length === SAT_CATEGORIES.length) {
+var cont = document.getElementById('btn-sat-continue');
+if (cont) cont.classList.add('on');
+}
+}
+
+function satContinue() {
+showScreen('s-email');
+}
+
+function backFromSat() {
+showScreen('s-questions');
+renderQ(QUESTIONS.length - 1);
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let currentQ = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+
+// ============================================================
+// FLOW
+// ============================================================
+function startAssessment() {
+showScreen('s-questions');
+renderQ(0);
+}
+
+function renderQ(idx) {
+currentQ = idx;
+const q = QUESTIONS[idx];
+
+// Progress — 7 total steps (6 questions + satisfaction scale)
+const TOTAL_STEPS = QUESTIONS.length + 1;
+const pct = ((idx + 1) / TOTAL_STEPS) * 100;
+document.getElementById('prog-label').textContent = `Question ${idx + 1} of ${TOTAL_STEPS}`;
+document.getElementById('prog-fill').style.width = pct + '%';
+
+// Question text
+document.getElementById('q-text').textContent = q.text;
+
+// Options
+const list = document.getElementById('q-options');
+list.innerHTML = '';
+var isGrid = q.options.length > 5;
+
+q.options.forEach(function(opt, i) {
+var li = document.createElement('li');
+var btn = document.createElement('button');
+btn.className = 'opt-btn' + (answers[idx] === i ? ' selected' : '');
+btn.textContent = opt;
+btn.onclick = function() { pick(i); };
+if (isGrid) {
+btn.style.fontSize = '14px';
+btn.style.padding = '13px 16px';
+}
+li.appendChild(btn);
+list.appendChild(li);
+});
+
+// 2-column grid for questions with more than 5 options
+if (isGrid) {
+list.style.display = 'grid';
+list.style.gridTemplateColumns = '1fr 1fr';
+list.style.gap = '11px';
+} else {
+list.style.display = 'flex';
+list.style.flexDirection = 'column';
+list.style.gridTemplateColumns = '';
+list.style.gap = '11px';
+}
+
+// Back button
+document.getElementById('btn-back').style.visibility = idx === 0 ? 'hidden' : 'visible';
+refreshNext();
+}
+
+function pick(i) {
+answers[currentQ] = i;
+document.querySelectorAll('.opt-btn').forEach(function(b, idx) {
+b.classList.toggle('selected', idx === i);
+});
+refreshNext();
+}
+
+function refreshNext() {
+var btn = document.getElementById('btn-next');
+var has = answers[currentQ] !== null;
+var last = currentQ === QUESTIONS.length - 1;
+btn.classList.toggle('on', has);
+btn.textContent = 'Continue →';
+}
+
+function goNext() {
+if (answers[currentQ] === null) return;
+if (currentQ < QUESTIONS.length - 1) {
+renderQ(currentQ + 1);
+} else {
+buildSatScale();
+showScreen('s-satisfaction');
+}
+}
+
+function goBack() {
+if (currentQ > 0) renderQ(currentQ - 1);
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function showResults() {
+var nameVal = document.getElementById('inp-name').value.trim();
+var emailVal = document.getElementById('inp-email').value.trim();
+
+if (!nameVal || !emailVal) {
+alert('Please enter your name and email to see your results.');
+return;
+}
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+alert('Please enter a valid email address.');
+return;
+}
+
+var response = buildResponse(answers);
+var firstName = nameVal.split(' ')[0];
+
+document.getElementById('result-heading').textContent = "Here's What Your Answers Suggest, " + firstName;
+document.getElementById('result-text').textContent = response;
+
+submitToGHL(nameVal, emailVal, response);
+showScreen('s-result');
+window.scrollTo(0, 0);
+}
+
+function buildResponse(ans) {
+var q1 = ans[0], q2 = ans[1], q3 = ans[2], q4 = ans[3], q5 = ans[4];
+var parts = [];
+
+// 1. State — always
+parts.push(F_STATE[q1]);
+
+// 2. Middle fragment — most impactful non-positive answer
+var mid = '';
+if (q2 >= 2 && F_ENERGY[q2]) mid = F_ENERGY[q2];
+else if (q3 >= 2 && F_PURPOSE[q3]) mid = F_PURPOSE[q3];
+else if (q4 >= 2 && F_CONNECTION[q4]) mid = F_CONNECTION[q4];
+else if (q2 === 1) mid = F_ENERGY[1];
+else if (q3 === 1) mid = F_PURPOSE[1];
+if (mid) parts.push(mid);
+
+// 3. Driver — always
+parts.push(F_DRIVER[q5]);
+
+// 4. Closing — always
+parts.push(F_CLOSING);
+
+return parts.join(' ');
+}
+
+// ============================================================
+// GO HIGH LEVEL SUBMISSION
+// ============================================================
+function submitToGHL(name, email, response) {
+// STEP 1: Paste your GHL webhook URL here
+var webhookUrl = 'YOUR_GHL_WEBHOOK_URL';
+
+// Nothing below needs to change
+if (!webhookUrl || webhookUrl === 'YOUR_GHL_WEBHOOK_URL') return;
+
+var nameParts = name.trim().split(' ');
+var firstName = nameParts[0];
+var lastName = nameParts.slice(1).join(' ') || '';
+
+var satString = satScores.map(function(s, i) {
+return SAT_CATEGORIES[i].label + ': ' + (s !== null ? s : '-');
+}).join(' | ');
+
+var payload = {
+firstName:          firstName,
+lastName:           lastName,
+email:              email,
+tags:               ['flourishing-survey'],
+'Q1_state':         QUESTIONS[0].options[answers[0]],
+'Q2_energy':        QUESTIONS[1].options[answers[1]],
+'Q3_purpose':       QUESTIONS[2].options[answers[2]],
+'Q4_connection':    QUESTIONS[3].options[answers[3]],
+'Q5_driver':        QUESTIONS[4].options[answers[4]],
+'Q6_barrier':       QUESTIONS[5].options[answers[5]],
+'Q7_satisfaction':  satString,
+'survey_response':  response
+};
+
+fetch(webhookUrl, {
+method:  'POST',
+headers: { 'Content-Type': 'application/json' },
+body:    JSON.stringify(payload)
+}).catch(function() { /* silent fail — submission doesn't block results */ });
+}
+
+// ============================================================
+// RESULTS ACTIONS
+// ============================================================
+function openCalendly() {
+Calendly.initPopupWidget({url: 'https://calendly.com/phil-voysey/life-design-coaching'});
+return false;
+}
+
+function backToQuestions() {
+showScreen('s-questions');
+renderQ(currentQ);
+}
+
+function startAgain() {
+answers = new Array(QUESTIONS.length).fill(null);
+currentQ = 0;
+showScreen('s-intro');
+}
+
+function shareLink() {
+var url = window.location.href;
+var title = 'Flourishing Survey — Possibility of Us';
+if (navigator.share) {
+navigator.share({ title: title, url: url });
+} else {
+navigator.clipboard.writeText(url).then(function() {
+alert('Link copied to clipboard — paste it to share.');
+}).catch(function() {
+prompt('Copy this link to share:', url);
+});
+}
+}
+
+// ============================================================
+// UTILITY
+// ============================================================
+function showScreen(id) {
+document.querySelectorAll('.screen').forEach(function(s) {
+s.classList.remove('active');
+});
+document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
