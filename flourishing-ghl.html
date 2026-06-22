@@ -1062,10 +1062,6 @@ body:    JSON.stringify(payload)
 // FORMSPREE NOTIFICATION (emails Phil the full submission)
 // ============================================================
 function submitToFormspree(name, email, response) {
-var satString = satScores.map(function(s, i) {
-return SAT_CATEGORIES[i].label + ': ' + (s !== null ? s : '-');
-}).join(' | ');
-
 var payload = {
 name:              name,
 email:             email,
@@ -1075,9 +1071,13 @@ email:             email,
 'Q4 - Connection': QUESTIONS[3].options[answers[3]],
 'Q5 - Driver':     QUESTIONS[4].options[answers[4]],
 'Q6 - Barrier':    QUESTIONS[5].options[answers[5]],
-'Q7 - Satisfaction': satString,
 'Survey response': response
 };
+satScores.forEach(function(s, i) {
+  payload['Sat - ' + SAT_CATEGORIES[i].label] = s !== null ? s + '/10' : '-';
+});
+var satTotal = satScores.reduce(function(sum, s) { return sum + (s !== null ? s : 0); }, 0);
+payload['Sat - TOTAL'] = satTotal + '/100';
 
 fetch('https://formspree.io/f/xaqgyqyp', {
 method:  'POST',
