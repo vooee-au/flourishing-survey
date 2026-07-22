@@ -22,6 +22,10 @@ QR code on the screen; each leader opens their personal link on their own device
 
 The agent probes one level deeper the way Expert OS does ("that's the category; give me the moment where it actually hurts"). Answers go to Jeanna, not to the group.
 
+**The word cloud, played carefully.** A live word cloud building on the projector is the right theatre, in two acts:
+- **Act one, during capture, warm-up only.** The capture opens with one designed one-word question ("one word for how AI makes you feel right now") and the cloud grows live on screen as answers land. Anonymous, energising, and it proves to the room that the link works. Then the screen goes dark for the real questions; a live cloud during those would put words in people's mouths, which is exactly what silent capture exists to prevent.
+- **Act two, the reveal.** When the break ends, the full clouds animate in as the opening of the tension report: the worries cloud, the excites cloud, the "stays human" cloud. Same theatre, zero anchoring, and the contrast lands harder because the room hasn't seen the words accumulating.
+
 ### 3. The break that does the work (10 minutes)
 While the room refills coffee, the tension report generates. This is the reveal moment, and it has to be fast, which sets the engineering bar: the report is automatic, not something Jeanna assembles. It shows:
 - **Alignments:** where the team already agrees (name them fast, momentum matters)
@@ -43,7 +47,7 @@ The full boundaries interview is too rich to rush in a group session, and it des
 
 ## Build path (all existing vooee patterns)
 
-**MVP (a working session away):** no app at all. A structured intake (Airtable form or Tally, opened from a QR code in the room) plus a Claude Project that ingests the responses and produces the tension report and the live drafting. The live flow sets one hard requirement even at MVP: the report must be a one-click generate that lands inside the coffee break, rehearsed end to end before a real client. Two boring risks to plan for because everything now happens in the room: venue wifi (phone hotspot as backup) and a leader without a device (two spare iPads or, worst case, paper cards Jeanna types in during the break).
+**MVP (a working session away):** no app at all. A structured intake (Airtable form or Tally, opened from a QR code in the room) plus a Claude Project that ingests the responses and produces the tension report and the live drafting. The warm-up word cloud can be Mentimeter off the shelf at MVP; the built version is a small self-contained display page polling the responses (the Ikigai/Netlify stack again) so it carries vooee branding and feeds the same dataset as everything else. The live flow sets one hard requirement even at MVP: the report must be a one-click generate that lands inside the coffee break, rehearsed end to end before a real client. Two boring risks to plan for because everything now happens in the room: venue wifi (phone hotspot as backup) and a leader without a device (two spare iPads or, worst case, paper cards Jeanna types in during the break).
 
 **v1 (the product):** the Ikigai pattern grown up. Netlify page per engagement (gated link), questions served one at a time with progress, answers to Airtable via function, Claude API for the deeper-probe follow-ups and the tension report. Reuses: Ikigai's question-to-report flow, Scorecard's fulfilment runbook, the enquiry form's Netlify-to-Airtable plumbing.
 
