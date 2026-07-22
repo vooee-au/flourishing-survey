@@ -105,7 +105,7 @@ Jeanna
 ---
 
 # Send checklist (internal, delete before sending)
-1. [J] Sprint priced at $18,000 + GST per Jeanna (22 Jul); combined $19,900 + GST. Note: the Travel Associates one-pager used $15,000 for a team-of-five sprint; align the two before both proposals are in market, or be ready to explain the difference.
+1. Pricing confirmed by Jeanna 22 Jul: sprint $18,000 + GST, combined $19,900 + GST. No conflict with Travel Associates: Sue was quoted "circa $15k" verbally with a bespoke proposal to follow, so both prices are deliberate and defensible.
 2. [J] Travel or Teams for the Brisbane session; adjust the Investment note.
 3. [J] Insert two concrete date options in the cover email and proposal timing.
 4. [J] Confirm attendee names are right (Lou, Ron, Shane, Jordan) and fix the day reference: the meeting page is dated Tuesday 21 July, proposal now says Tuesday throughout (21 July 2026 was a Tuesday).
