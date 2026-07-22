@@ -6,35 +6,34 @@ The 90-Day Workbook (doc 06) stays the leave-behind. This is how its first secti
 ## What we're borrowing from Expert OS (mechanics, not content)
 From the summit app: the guided step sequence with progress ("Step 4 of 10"), an agent that interviews rather than presents a form, remembered context carried between steps ("I can see from your profile..."), pick-an-option-or-write-your-own at every question, the explicit "lock it in" moment, and a polished document handed back at the end. One more pattern worth stealing: the interactive calculator (sliders recalculating live) as a moment of delight mid-sequence. The content is his IP; the interaction pattern is just good product design.
 
-## The flow
+## The flow (everything happens in the room)
+Jeanna's call, 22 July: no pre-work. Pre-work gets filled out badly or not at all, and answers given before anyone has explained the why are shallow answers. The capture happens live, after the framing. This also fixes a facilitation problem: silent individual capture in the room, before any group discussion of the specifics, is the classic guard against anchoring; the loudest voice can't set everyone's answers if everyone has already answered.
 
-### 1. Before the session: the individual link (15 to 20 minutes per leader)
-Each member of the leadership team gets a personal link. An agent walks them through the workbook's Section 1, one question at a time, in vooee's voice:
+### 1. First: the why, and the cost of not doing it (about 30 minutes)
+Jeanna presents the NIST framing in plain English (the quick-start's four questions: who decides, where do we need a human gate, how do we know it works, what's the plan for a bad day) and the cost of skipping it: the incident stories, the Notifiable Data Breaches deadlines, the free-chatbot discovery most businesses get to make exactly once. The Section stats earn their place here (52% anxious, 3% proficient). Nobody answers anything yet; this is why the answers will be honest.
+
+### 2. Then: silent capture, live in the room (15 to 20 minutes)
+QR code on the screen; each leader opens their personal link on their own device and answers alone, in silence, coffee in hand:
 - The honest baseline (excites, worries, exposure, confidence 1 to 10 and why)
 - Their six-area readiness scores, in pencil
 - Their one-paragraph answer to "why does this business want AI at all?"
 - Their cut vs create instinct
 - Their personal list of decisions that must stay human
-- **The boundaries interview** (the constitution layer, below)
 
-Answers are private to Jeanna until the session. The agent probes one level deeper the way Expert OS does ("that's the category; give me the moment where it actually hurts").
+The agent probes one level deeper the way Expert OS does ("that's the category; give me the moment where it actually hurts"). Answers go to Jeanna, not to the group.
 
-### 2. Between link and room: the tension report (for Jeanna, automatic)
-The system compares the leaders' answers and produces a facilitator's brief:
-- **Alignments:** where the team already agrees (name them fast in the session, momentum matters)
+### 3. The break that does the work (10 minutes)
+While the room refills coffee, the tension report generates. This is the reveal moment, and it has to be fast, which sets the engineering bar: the report is automatic, not something Jeanna assembles. It shows:
+- **Alignments:** where the team already agrees (name them fast, momentum matters)
 - **Tensions:** confidence spread, conflicting AI positions, one leader's "must stay human" being another's "automate this first", readiness scores that disagree by 4+ points on the same area
-- **The five-paragraphs problem, made visible:** their "why AI" paragraphs side by side. The workbook says "if five leaders would write five different paragraphs, that is the first thing the ninety days fixes"; this shows them the five paragraphs.
-Nothing is shown to the group without Jeanna deciding to show it; some tensions are better raised without attribution.
+- **The five-paragraphs problem, made visible:** their "why AI" paragraphs side by side. The workbook says "if five leaders would write five different paragraphs, that is the first thing the ninety days fixes"; this shows them the five paragraphs, twenty minutes after they wrote them.
+Jeanna sees it first and decides what the group sees, and what gets raised without attribution.
 
-### 3. In the room: drafting the ground rules live
-The working session opens on the alignment map instead of a blank page. Then, projected live, AI drafts from their combined answers:
-- The shared AI position paragraph (from five paragraphs to one, negotiated in the room)
-- The "decisions that stay human" list (union of individual lists, argued down to the absolute few)
-- The policy template's brackets, pre-filled from their answers and edited aloud
-The theatre of this matters commercially: they watch their own words become their governance policy in minutes. That is the "he created an app for us" moment from the summit, and it is also the product demo for everything else vooee sells.
+### 4. Then: drafting the ground rules live
+The discussion opens on the alignment map instead of a blank page. Then, projected live, AI drafts from their combined answers: the shared AI position (five paragraphs to one, negotiated aloud), the "decisions that stay human" list (union of lists, argued down to the absolute few), the policy template's brackets pre-filled from their answers and edited in the room. They watch their own words become their governance policy within the same half-day they wrote them. That is the "he created an app for us" moment from the summit, and it is also the product demo for everything else vooee sells.
 
-### 4. After the room: the persona layer (the part with legs)
-The boundaries interview from step 1 gives each leader a personal charter: what they value, what they veto, what evidence convinces them, what they never want to see in work that reaches them, how they weigh risk against speed. Each charter becomes a **persona the team can consult**: a Claude Project per leader ("Ask the CFO-lens"), or one project holding all of them.
+### 5. Later, in the 1:1s: the persona layer (the part with legs)
+The full boundaries interview is too rich to rush in a group session, and it deserves the same treatment as the baseline: facilitated, not homework. It runs in each leader's 1:1 slot during the 90 days (or a scheduled 30-minute call per leader), producing a personal charter: what they value, what they veto, what evidence convinces them, what they never want to see in work that reaches them, how they weigh risk against speed. Each charter becomes a **persona the team can consult**: a Claude Project per leader ("Ask the CFO-lens"), or one project holding all of them.
 - A team member sense-checks work before it goes up: "score this proposal the way our COO would; what would she push back on?"
 - The personas are sanctioned and visible, built from what each leader actually said, not the team's guesses. Leaders review and approve their own persona before it goes live.
 - This inverts the vooee AI Boardroom skill (synthetic thought leaders): here the boardroom is the client's own C-suite.
@@ -44,7 +43,7 @@ The boundaries interview from step 1 gives each leader a personal charter: what 
 
 ## Build path (all existing vooee patterns)
 
-**MVP (a working session away):** no app at all. A structured intake (Airtable form or Tally, one per leader) plus a Claude Project that ingests the responses and produces the tension report and the live drafting. Proves the session mechanics with a real client before any build.
+**MVP (a working session away):** no app at all. A structured intake (Airtable form or Tally, opened from a QR code in the room) plus a Claude Project that ingests the responses and produces the tension report and the live drafting. The live flow sets one hard requirement even at MVP: the report must be a one-click generate that lands inside the coffee break, rehearsed end to end before a real client. Two boring risks to plan for because everything now happens in the room: venue wifi (phone hotspot as backup) and a leader without a device (two spare iPads or, worst case, paper cards Jeanna types in during the break).
 
 **v1 (the product):** the Ikigai pattern grown up. Netlify page per engagement (gated link), questions served one at a time with progress, answers to Airtable via function, Claude API for the deeper-probe follow-ups and the tension report. Reuses: Ikigai's question-to-report flow, Scorecard's fulfilment runbook, the enquiry form's Netlify-to-Airtable plumbing.
 
