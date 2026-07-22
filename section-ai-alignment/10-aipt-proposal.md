@@ -56,7 +56,7 @@ The social intelligence dashboards, the call transcription work and the voice pr
 | AI Enablement Sprint · team of five · six weeks | $18,000 + GST |
 | **Combined** | **$19,900 + GST** |
 
-Both parts at list pricing. The sprint includes all preparation and session materials, three 1:1 coaching sessions per person, the leadership 1:1s, and the closing report. [J: Alignment Room in person in Brisbane is the recommendation; confirm how you want to handle travel, or run it on Teams.]
+Both parts at list pricing. The sprint includes all preparation and session materials, three 1:1 coaching sessions per person, the leadership 1:1s, and the closing report. Travel and accommodation for in-person sessions in Brisbane are additional, billed at cost. The Alignment Room works best in person; the sprint's coaching sessions run well online, so most of the program carries no travel at all.
 
 ## Ongoing, if you want it
 
@@ -100,7 +100,7 @@ Jeanna
 
 # Send checklist (internal, delete before sending)
 1. Pricing confirmed by Jeanna 22 Jul: sprint $18,000 + GST, combined $19,900 + GST. No conflict with Travel Associates: Sue was quoted "circa $15k" verbally with a bespoke proposal to follow, so both prices are deliberate and defensible.
-2. [J] Travel or Teams for the Brisbane session; adjust the Investment note.
+2. Travel settled (Jeanna, 22 Jul): in-person Brisbane recommended, travel and accommodation additional at cost; sprint coaching runs online.
 3. [J] Insert two concrete date options in the cover email and proposal timing.
 4. [J] Confirm attendee names are right (Lou, Ron, Shane, Jordan) and fix the day reference: the meeting page is dated Tuesday 21 July, proposal now says Tuesday throughout (21 July 2026 was a Tuesday).
 5. Dry-run the live drafting mechanic before the Alignment Room date is locked (Kohler's condition), and have the intake form + tension report Claude Project rehearsed end to end.
