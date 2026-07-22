@@ -1,14 +1,17 @@
 # Section AI resource library — catalogue
-Compiled 22 July 2026 for Jeanna Manifold (vooee).
+Compiled 22 July 2026 for Jeanna Manifold (vooee). Corrected same day: the resources are NOT email-gated. Each card on sectionai.com/resources has a "Download now" button that opens the PDF directly, hosted on Section's HubSpot file store.
 
-## Why this is a catalogue, not a folder of PDFs
-Two hard blockers in this cloud session: the session's network policy refuses connections to sectionai.com (and archive.org), and Section's site also blocks automated fetchers. On top of that, nearly all of Section's playbooks are gated behind an email form, so there is no direct PDF link to pull even with network access.
+## Direct download pattern (verified by Jeanna, 22 July)
+`https://50522927.hs-sites.com/hubfs/Content%20Download/<File Name>.pdf`
+Example: https://50522927.hs-sites.com/hubfs/Content%20Download/The%201-Year%20AI%20Enablement%20Checklist.pdf
 
-**How to get the files into `OneDrive/Documents/Products`:** open each link below on your own machine, enter your email once (their form remembers you), and save each PDF into a `Products/Section AI` folder. Or run a Cowork desktop session and ask Claude there to walk the list with you. Every link below goes straight to the right landing page.
+## Why this cloud session still can't fetch them
+The session's network policy (allowlist) refuses outbound connections to sectionai.com, the hs-sites.com HubSpot host, and archive.org; the server-side fetcher is blocked by their CDN as well. Downloading is a two-minute job from any normal machine or a Cowork desktop session: open sectionai.com/resources, click each Download now button, save into `OneDrive/Documents/Products/Section AI`. Already saved to this repo under `section-ai-alignment/downloads/`: The 1-Year AI Enablement Checklist (plus its landing page).
 
-## Playbooks and ebooks (gated, email form)
+## Playbooks and ebooks
 | Resource | What it covers | Link |
 |---|---|---|
+| The 1-Year AI Enablement Checklist | 30/90/365 roadmap from "we need an AI strategy" to measurable adoption; benchmarks and case studies (Sidearm Sports, Autodesk, Horizon Media). **Downloaded — see downloads/ and doc 05** | https://50522927.hs-sites.com/hubfs/Content%20Download/The%201-Year%20AI%20Enablement%20Checklist.pdf |
 | The AI Strategy Playbook | How to build an AI strategy: prioritisation, roadmap, governance | https://www.sectionai.com/resource/the-ai-strategy-playbook |
 | The AI Change Management Playbook | A change management approach for AI rollout leaders can run immediately | https://www.sectionai.com/resource/the-ai-change-management-playbook |
 | The Enterprise AI Transformation Playbook | Three-stage journey to an AI-powered organisation, based on 150+ enterprise engagements | https://www.sectionai.com/resource/the-enterprise-ai-transformation-playbook |
@@ -16,7 +19,7 @@ Two hard blockers in this cloud session: the session's network policy refuses co
 | The AI Marketing Strategy Playbook | AI-powered marketing tactics from their Marketing Strategy Summit | via https://www.sectionai.com/resources |
 | The New AI-Powered CMO Playbook | Companion to their live CMO event | https://www.sectionai.com/events/live-events/the-new-ai-powered-cmo-playbook |
 
-## Templates, worksheets, workbooks (gated)
+## Templates, worksheets, workbooks
 | Resource | What it covers | Link |
 |---|---|---|
 | AI Workflow Audit Worksheet | Auditing existing workflows to find AI opportunities | via https://www.sectionai.com/resources |
@@ -49,4 +52,4 @@ Two hard blockers in this cloud session: the session's network policy refuses co
 - Squishy vs. hard ROI: why leaders need both — https://www.sectionai.com/blog/squishy-vs-hard-roi-why-leaders-need-both
 
 ## One important note on use
-These are Section's copyrighted materials, gated as lead magnets. Reading them to sharpen vooee's thinking, citing their published stats with attribution, and borrowing structural ideas is all fine. Republishing their frameworks, slides or diagrams as vooee content is not. The alignment doc (02) is written with that line in mind.
+These are Section's copyrighted materials, published as free lead magnets. Reading them to sharpen vooee's thinking, citing their published stats with attribution, and borrowing structural ideas is all fine. Republishing their frameworks, slides or diagrams as vooee content is not. The alignment doc (02) is written with that line in mind.
