@@ -61,5 +61,16 @@ Note: the branch was NOT merged to main. The flourishing-survey repo is Phil Voy
 ## How to start the next session
 1. Run it in Cowork on the desktop (OneDrive write access; open network).
 2. Read CLAUDE.md and the canonical brand files, then this handover.
-3. Skim docs 01–05 in `Products/Section AI` (or the repo branch if not yet moved).
+3. Skim docs 01–08 in `Products/Section AI` (or the repo branch if not yet moved).
 4. Ask Jeanna which item from What's next to tackle first; the file move (step 2 above) is quick and unblocks everything else.
+
+---
+
+## Evening addendum, same day (docs 06 to 08)
+The session continued after the first handover and grew three product pieces. Full context lives in the docs themselves; the WIP page entry was refreshed to match.
+
+1. **Doc 06 — The 90-Day AI Workbook (draft v2).** The engagement leave-behind. Part A: the workbook (Section's 30/90/365 staging, leadership structures adapted from the BetterHRx "AI Enabled Leader" workbooks, day-0/day-90 pencil scoring). Part B: the AI Policy Starter Pack folded in by reference (policy template, staff one-pager, rollout checklist). Discovery along the way: the Policy Pack (`Products/AI Policy Pack/`) is the governance work from the Lauren Dallas niche-product experiment (webinar 30 June, pack built 4 July, SEMrush said 50/mo, redirected to training). Two IP checks before client use: BetterHRx/Beth Barratt-Browne partnership terms; nothing from Section beyond cited stats.
+2. **Doc 07 — The two-tier governance plan.** Free AI Ground Rules Check (the pack's 10-question self-assessment as a scored check, Scorecard pattern) → the $129 lite pack as drafted (prompt sheet as hero; credit against the Working Session within 60 days) → the facilitated version inside the engagement. Part A of the workbook never appears in the lite tier; that is the differentiation.
+3. **Doc 08 — The Alignment Room concept.** The Working Session as a live app using Expert OS interaction mechanics (Jeanna's summit PDFs, in this chat's uploads). Jeanna's calls shaping it: no pre-work, all capture live in the room after the NIST why-and-cost framing; word cloud in two acts (one designed warm-up question live, full clouds held for the reveal) to avoid anchoring; boundaries interview and personas built in the 1:1s, not the group session; personas inspired by Allie Miller's vault prompts but written as vooee's own question set (licensing check open). MVP is forms + Claude Project + Mentimeter, run with a real client before building anything.
+
+All committed to the branch; Word versions of every doc sent to Jeanna in chat for flight reading. The rework will come back from her Word mark-ups.
