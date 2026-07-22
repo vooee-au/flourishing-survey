@@ -12,7 +12,7 @@
 
 ## What I heard on Tuesday
 
-Three things stayed with me from Tuesday's session with Lou, Ron, Shane and yourself.
+Four things stayed with me from Tuesday's session with Lou, Ron, Shane and yourself.
 
 First, the appetite is real and it is immediate. You want Claude working in sales and marketing now, without waiting for the HubSpot migration or the new websites to land.
 
@@ -20,7 +20,9 @@ Second, you were clear about the destination: a team that builds and runs this w
 
 Third, the room raised a question that deserves a proper answer: sales and marketing first, but where do the student journey, events and operations fit, and when? That is a leadership question, and there is a good way to answer it properly rather than by default.
 
-This proposal covers all three, in order.
+Fourth, and it might be the biggest: your leadership team wants to understand this properly, and right now there is nothing underneath the enthusiasm. No agreed position on what AI is for at FEG, no ground rules on what the tools may and may not touch. That is completely normal at this stage, and it is also the thing to fix first, because every other decision gets easier once it exists.
+
+This proposal covers all four, in order.
 
 ## The shape I recommend
 
