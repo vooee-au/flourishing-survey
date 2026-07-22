@@ -1,13 +1,17 @@
 # The 90-Day AI Workbook
-**Draft v1 · 22 July 2026 · The leave-behind for the 90-Day Engagement**
+**Draft v2 · 22 July 2026 · The leave-behind for the 90-Day Engagement**
 
-A working document for the leadership team. It starts life in the $1,900 AI Working Session, gets filled in across the 90-Day Engagement, and stays in the business when Jeanna steps back. Not a report about the client; a document the client writes, with Jeanna beside them.
+A working document for the leadership team. It starts life in the $1,900 AI Working Session, gets filled in across the 90-Day Engagement, and stays in the business when Jeanna steps back. Not a report about the client; a document the client writes, with Jeanna beside them. Part A is the workbook; Part B is the governance pack the business adopts along the way (policy template, staff one-pager, rollout checklist).
 
 **Sources combined (for Jeanna's reference, not for the client copy):**
-- Vooee AI Policy Pack drafts (NIST AI RMF four steps in plain English, risk and speed grid, four tests, security self-assessment, incident plan, adviser questions). Vooee IP, reuse freely.
+- **The AI Policy Starter Pack in full** (`Products/AI Policy Pack/drafts/`, built 4 July 2026): the AI Usage Policy template with its "why this matters" teaching notes, the NIST AI RMF four steps in plain English, the risk and speed grid, the four tests, the ten-question security self-assessment, the incident plan, the staff one-pager, the ten-step rollout checklist and the adviser questions. This is the governance work from the niche-product experiment after Lauren Dallas's 30 June webinar; SEMrush put "ai policy template" at 50 searches a month in AU, and it was redirected to training material. Folding it in here gives it the distribution it deserved: inside a $15,000 engagement instead of behind a $129 checkout. All Vooee IP, reused freely.
 - The AI Enabled Leader participant workbooks (readiness snapshot, governance responsibility matrix, opportunity mapping, better-questions review, journal pattern). Copyright BetterHRx and Beth Barratt-Browne. Concepts adapted in fresh wording below; **Jeanna to confirm what the partnership terms allow before anything closer than adaptation.**
 - Section's 1-Year AI Enablement Checklist (30/90/365 staging, benchmarks, cut vs create). Cited where quoted, structure not copied.
 - Vooee's own 4D framework and engagement structure.
+
+---
+
+# Part A · The workbook
 
 ---
 
@@ -95,6 +99,9 @@ Place every AI use on this grid. Most will sit bottom-left; that is fine, leave 
 |---|---|---|
 | **High stakes** (money, health, hiring, advice, reputation) | Human approves every single time | Guardrails and a kill switch before go-live |
 | **Low stakes** (internal, recoverable) | Spot-check weekly | Review monthly |
+
+### What this month produces
+By day 30 the business has an **adopted AI Usage Policy**: the template in Part B, brackets filled in during the working sessions, reviewed by the business's own adviser, dated and owned. The staff one-pager (also Part B) goes on the wall, and the team gets its fifteen-minute walkthrough. The ten-step rollout checklist in Part B is the runsheet; steps 1 to 8 belong to this month, steps 9 and 10 are Sections 4 and beyond.
 
 ---
 
@@ -188,6 +195,19 @@ When three months of pages look the same, book a working session; that is what p
 
 ---
 
+# Part B · The governance pack
+The three documents below slot in verbatim from `Products/AI Policy Pack/drafts/` (one source of truth; don't fork the text into this file):
+
+1. **The AI Usage Policy template** (`01-ai-usage-policy-template.md`, ~10pp). Twelve sections, every [bracket] a leadership decision, with the grey "why this matters" notes kept in: purpose and scope, accountability, approved tools, acceptable use with the five hard no's, data rules (APP 8, onshore processing), telling clients, human review, security basics, the four-move incident plan, training, review cadence, definitions. In the engagement this is filled in live during the day 1 to 30 sessions rather than alone on a weekend; the "why this matters" notes become talking points, which is what they always wanted to be.
+2. **The staff one-pager** (`03-staff-one-pager-and-rollout-checklist.md`, page 1). Do / Don't / Unsure, prints A4 for the wall. Filled in from the adopted policy at the day-30 mark.
+3. **The ten-step rollout checklist** (same file, page 2). Becomes the engagement runsheet for month one; steps 9 (set the routine) and 10 (train for fluency) hand over to workbook Sections 4 and 6.
+
+One edit needed for the engagement version: the pack's clause 10 and checklist step 10 plug "Vooee's Working with AI programme" as the fluency path. Inside the 90-Day Engagement that reads like an ad for something the client already bought; repoint it to the coaching happening inside the engagement itself.
+
+The pack's fourth document (`04-customise-with-ai-prompt-sheet.md`) stays out of the leave-behind; it is the self-serve substitute for having Jeanna in the room, which this client has.
+
+---
+
 ## The fine print
 This workbook is general information and an educational starting point, not legal advice. Before adopting any policy it touches, have it reviewed by a qualified legal or HR professional who knows the business and sector. Frameworks referenced: NIST AI Risk Management Framework; the National AI Centre's voluntary responsible AI practices; benchmarks cited from Section (sectionai.com) and McKinsey with attribution.
 
@@ -198,7 +218,7 @@ This workbook is general information and an educational starting point, not lega
 
 # Production notes (not part of the client document)
 1. **IP check before this ships:** the readiness snapshot, ownership matrix, opportunity levels and journal pattern are adapted, reworded and restructured from the AI Enabled Leader workbooks (BetterHRx and Beth Barratt-Browne). The adaptation is substantial, but Jeanna should confirm the partnership terms, or simply confirm Beth is comfortable, before this is client-facing. The NIST material is Vooee's own Policy Pack work and carries no such question.
-2. **Relationship to the Policy Pack ($129 product):** this workbook deliberately reuses its spine. The pack is the self-serve version; the workbook is the accompanied version inside a $15,000 engagement. Same thinking, two price points; keep the wording slightly different so buyers of both do not feel double-charged (the workbook is fill-in and coached, the pack is templates).
+2. **The Policy Pack question is now a product decision.** The pack's whole content lives inside this leave-behind (Part B verbatim, quick-start material woven through Part A). Options: (a) retire the $129 pack and let the governance work live only inside engagements, (b) keep both, with the pack as the self-serve rung below the Working Session (its webinar funnel "AI ground rules for Australian small business" then feeds the advisory ladder). The 4 July kill gates were never run; this is the moment to decide, and (b) costs nothing extra since the drafts are done.
 3. **Format:** A4 Word or fillable PDF, vooee branding, generous white space for handwriting. The snapshot and grid pages want a full page each. Cover carries client name and dates like a logbook.
 4. **The pencil rule:** day-0 and day-90 scores in the same table is the whole emotional arc of the leave-behind; keep them side by side in any redesign.
 5. **What was deliberately left out:** Section's agents-per-employee ratio (hype-adjacent for this audience), the six-domain "AI Readiness Index" language (too corporate for vooee's voice), and any trademark-style naming of frameworks. The 4D framework gets its mention through the coaching, not this document.
