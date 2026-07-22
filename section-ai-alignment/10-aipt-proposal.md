@@ -59,10 +59,14 @@ The social intelligence dashboards keep working as the live example throughout. 
 | | |
 |---|---|
 | The Alignment Room · leadership team · half a day | $1,900 + GST |
-| AI Enablement Sprint · team of five · six weeks | $15,000 + GST |
-| **Combined** | **$16,900 + GST** |
+| AI Enablement Sprint · team of five · six weeks | $18,000 + GST |
+| **Combined** | **$19,900 + GST** |
 
 Both parts at list pricing. The sprint includes all preparation and session materials, three 1:1 coaching sessions per person, the leadership 1:1s, and the closing report. [J: Alignment Room in person in Brisbane is the recommendation; confirm how you want to handle travel, or run it on Teams.]
+
+## Ongoing, if you want it
+
+When the sprint ends, some businesses want steady senior support as the roadmap rolls on: new questions, new tools, the next cohort, and someone at the table when AI decisions come up. That is the Fractional AI Advisor seat: one to two days a week inside the business at $8,500 + GST per month, three-month minimum. I hold two of these seats at a time, so each business gets real attention. No decision needed now; the option is here so you can see the whole path.
 
 ## Timing
 
@@ -101,7 +105,7 @@ Jeanna
 ---
 
 # Send checklist (internal, delete before sending)
-1. [J] Confirm sprint list price ($15,000 + GST) and the combined figure.
+1. [J] Sprint priced at $18,000 + GST per Jeanna (22 Jul); combined $19,900 + GST. Note: the Travel Associates one-pager used $15,000 for a team-of-five sprint; align the two before both proposals are in market, or be ready to explain the difference.
 2. [J] Travel or Teams for the Brisbane session; adjust the Investment note.
 3. [J] Insert two concrete date options in the cover email and proposal timing.
 4. [J] Confirm attendee names are right (Lou, Ron, Shane, Jordan) and fix the day reference: the meeting page is dated Tuesday 21 July, proposal now says Tuesday throughout (21 July 2026 was a Tuesday).
