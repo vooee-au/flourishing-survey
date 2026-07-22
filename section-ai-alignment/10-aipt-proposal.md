@@ -16,7 +16,7 @@ Two themes ran through the session with Lou, Ron, Shane and yourself, and each o
 
 The first is about direction. Your leadership team is curious about what AI can do for FEG and wants to understand it properly, and the room's own discussion showed the question that comes with that: sales and marketing first, but where do the student journey, events and operations fit, and when? Questions like that are best answered once, together, with an agreed position and a set of ground rules to work from. That is part one of this proposal.
 
-The second is about momentum. You want Claude working in sales and marketing now, without waiting for the HubSpot migration or the new websites, and you were clear about the destination: a team that builds and runs this work itself. Not a dependency on me, and not a dashboard that decays the day I stop maintaining it. That is part two.
+The second is about momentum. You want Claude working in sales and marketing now, without waiting for the HubSpot migration or the new websites. And the appetite went well beyond the dashboards: the training-call transcription work and the voice agents, onboarding new sales reps and practising objection handling, clearly struck a chord. You were also clear about the destination: a team that builds and runs this work itself. Not a dependency on me, and not tools that decay the day I stop maintaining them. That is part two.
 
 ## The shape I recommend
 
@@ -37,16 +37,16 @@ You leave with:
 A cohort of five, drawn from the sales and marketing team. This is how "the team runs it without Jeanna" actually happens.
 
 - **Week 1, foundations.** What Claude can and can't do, how to work with it well, and how to use it safely with your data. Built for people coming across from ChatGPT.
-- **Week 2, projects.** Each person locks a real project from their own role. The obvious candidates are the ones we looked at on Tuesday: the social intelligence dashboards, the content engine, the nurture emails.
+- **Week 2, projects.** Each person locks a real project from their own role. The obvious candidates are the ones we looked at on Tuesday: the social intelligence dashboards, the content engine, the nurture emails, the training-call transcription and coaching work, and the voice practice tools for onboarding and objection handling.
 - **Weeks 3 to 5, coaching.** Three individual sessions per person, on their project, in their tools.
 - **Week 6, show the work.** The cohort presents what they built. The work stays in the business.
 - **After the sprint,** leadership receives a report: capability before and after, what was built, and where to focus next.
 
 Each leader also gets a tailored 1:1 session during this period, so the roadmap stays a leadership tool rather than a document.
 
-## Where the dashboards fit
+## Where the working examples fit
 
-The social intelligence dashboards keep working as the live example throughout. During the sprint your team learns to maintain and extend them, so the asset and the capability land together. Further build work beyond that (the design agent, sentiment monitoring, deeper integrations) is scoped separately once the roadmap sets the order. [J: confirm this positioning, or fold a defined amount of build work into part two.]
+The social intelligence dashboards, the call transcription work and the voice practice agents keep working as live examples throughout. During the sprint your team learns to run and extend what fits their roles, so the assets and the capability land together. Bigger builds (the design agent, sentiment monitoring, a production voice agent for rep onboarding and objection practice, deeper integrations) are scoped separately once the roadmap sets the order. [J: confirm this positioning, or fold a defined amount of build work into part two.]
 
 ## Investment
 
