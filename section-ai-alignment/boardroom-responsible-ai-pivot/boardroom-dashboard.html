@@ -1,0 +1,136 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><!-- boardroom dashboard -->
+<title>vooee · AI Boardroom — the responsible-AI pivot</title>
+<style>
+:root{--green:#1e3a2f;--green2:#2d5443;--sand:#ddd5c7;--paper:#f6f3ec;--ink:#22271f;--accent:#c4933f;--red:#a04b3c;--amber:#b8732a;}
+*{box-sizing:border-box}body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--paper);color:var(--ink);line-height:1.55}
+.wrap{max-width:1060px;margin:0 auto;padding:32px 20px 80px}
+header{background:var(--green);color:var(--sand);padding:44px 20px 36px}
+header .wrap{padding:0 20px}
+.brand{font-family:Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:.4px;font-size:15px;text-transform:lowercase}
+h1{font-size:32px;margin:10px 0 6px;font-weight:600}
+.sub{opacity:.85;max-width:760px}
+h2{font-size:22px;margin:44px 0 12px;border-bottom:2px solid var(--sand);padding-bottom:8px}
+.verdict{background:var(--green);color:var(--sand);border-radius:10px;padding:22px 26px;margin-top:28px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.verdict .big{font-size:44px;font-weight:700;font-family:Helvetica,Arial,sans-serif}
+.verdict p{margin:0;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:18px}
+.card{background:#fff;border:1px solid #e3ddd0;border-radius:10px;padding:18px 18px 14px}
+.card-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card h3{margin:0;font-size:17px}
+.role{font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#6c7266;text-transform:uppercase;letter-spacing:.5px;text-align:right}
+.votes{display:flex;align-items:center;gap:8px;margin:10px 0;font-family:Helvetica,Arial,sans-serif;font-size:11.5px;flex-wrap:wrap}
+.vote{padding:3px 9px;border-radius:20px;font-weight:700;letter-spacing:.3px}
+.v-conditional{background:#f4e7cf;color:var(--amber)}.v-yes{background:#e0ecdf;color:var(--green2)}.v-no{background:#f0ddd7;color:var(--red)}
+.arrow{color:#999}.chg{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:#8a8f83}.chg.changed{color:var(--accent);font-weight:700}
+.quote{font-style:italic;margin:8px 0 10px}
+.cond,.dis{font-size:13px;color:#4c5247;margin:6px 0}
+.panel{background:#fff;border:1px solid #e3ddd0;border-radius:10px;padding:22px 24px;margin-top:16px}
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 28px}
+.sl label{font-family:Helvetica,Arial,sans-serif;font-size:12.5px;display:flex;justify-content:space-between;margin-bottom:4px}
+.sl output{font-weight:700;color:var(--green2)}
+input[type=range]{width:100%;accent-color:var(--green2)}
+.outs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:22px}
+.out{background:var(--paper);border-radius:8px;padding:14px 16px}
+.out .n{font-size:26px;font-weight:700;font-family:Helvetica,Arial,sans-serif;color:var(--green)}
+.out .l{font-size:12px;font-family:Helvetica,Arial,sans-serif;color:#6c7266;text-transform:uppercase;letter-spacing:.5px}
+.out.warn .n{color:var(--red)}
+.note{font-size:13px;color:#6c7266;margin-top:14px}
+ol.gates{padding-left:20px}ol.gates li{margin:8px 0}
+footer{margin-top:60px;font-size:12px;color:#8a8f83;font-family:Helvetica,Arial,sans-serif}
+@media print{.verdict{-webkit-print-color-adjust:exact;print-color-adjust:exact}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<header><div class="wrap"><div class="brand">vooee · ai boardroom</div><h1>The responsible-AI pivot</h1>
+<p class="sub">Eight advisors, two rounds, one question: is the governance and leadership-alignment engine strong enough to redefine the business model, and should the website move now? Convened 22 July 2026.</p></div></header>
+<div class="wrap">
+<div class="verdict"><div class="big">8–0</div><p><strong>CONDITIONAL, both rounds.</strong> Nobody said pivot now. Nobody said drop it. Every advisor landed on the same gate: sell and deliver the Alignment Room at full price first (Foundation Education is deal one), clear both IP checks, then reposition the website once, from paying clients' language.</p></div>
+
+<h2>The consensus gates</h2>
+<div class="panel"><ol class="gates">
+<li><strong>Announce the 14 July restructure</strong> on LinkedIn now. Built, reviewed, unlaunched.</li>
+<li><strong>Close Foundation Education/AIPT</strong> on the Alignment Room as the delivery method of the existing ladder, most advisors say within 30 days.</li>
+<li><strong>Deliver 1–2 full-price engagements</strong> with tracked economics (days in vs dollars out) and day-0/day-90 proof captured.</li>
+<li><strong>Clear the IP</strong>: BetterHRx partnership terms and Allie Miller vault-prompt licensing, before marketing the engine.</li>
+<li><strong>Red-team the persona layer</strong> and live policy drafting before they are client-facing claims.</li>
+<li><strong>Then reposition once</strong>, permanently, in the clients' words.</li>
+</ol></div>
+
+<h2>Test the assumptions</h2>
+<div class="panel">
+<div class="sliders">
+<div class="sl"><label>Engagements closed, 12 months <output id="o_e">3</output></label><input type="range" id="s_e" min="0" max="10" value="3" step="1"></div>
+<div class="sl"><label>Engagement price <output id="o_p">$15,000</output></label><input type="range" id="s_p" min="8000" max="25000" value="15000" step="500"></div>
+<div class="sl"><label>Founder days per engagement <output id="o_d">8</output></label><input type="range" id="s_d" min="4" max="14" value="8" step="1"></div>
+<div class="sl"><label>Working Sessions sold <output id="o_w">6</output></label><input type="range" id="s_w" min="0" max="20" value="6" step="1"></div>
+<div class="sl"><label>Fractional seats filled (months total) <output id="o_f">6</output></label><input type="range" id="s_f" min="0" max="24" value="6" step="1"></div>
+<div class="sl"><label>Engine build cost (founder days) <output id="o_b">15</output></label><input type="range" id="s_b" min="5" max="40" value="15" step="1"></div>
+</div>
+<div class="outs">
+<div class="out"><div class="n" id="r_rev">–</div><div class="l">12-month revenue</div></div>
+<div class="out"><div class="n" id="r_days">–</div><div class="l">Founder days consumed</div></div>
+<div class="out" id="r_ratebox"><div class="n" id="r_rate">–</div><div class="l">Effective $/founder day</div></div>
+<div class="out"><div class="n" id="r_build">–</div><div class="l">Build cost @ $1k/day floor</div></div>
+</div>
+<p class="note">The board's fight lives in these sliders. Cannon-Brookes says 8–10 days per engagement makes the maths mediocre ($1,500–1,875/day); Ritson modelled ~5 days ($3,000/day). Buffett's gate: the rate box must stay green (&ge;$3,000) across two real deliveries before the website moves. Working Sessions counted at $1,900 · half day. Fractional months at $8,500 · ~6 days each.</p>
+</div>
+
+<h2>The board</h2>
+<div class="grid"><div class="card"><div class="card-top"><h3>Mark Ritson</h3><span class="role">Marketing fundamentals</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“This is a tactic wearing a strategy&#x27;s coat. Give the 14 July positioning its ninety days, sell the engine as your unfair advantage inside it.”</p>
+<p class="cond"><strong>Final condition:</strong> Reposition the website only after the Alignment Room has been sold and delivered at full price twice (AIPT first), with both IP checks cleared and the persona feature red-teamed, and after the 14 July positioning — announced on LinkedIn this week — has had its 90 days in market.</p>
+<p class="dis">Disagreed most with <strong>Mike Cannon-Brookes</strong></p></div><div class="card"><div class="card-top"><h3>Allie K. Miller</h3><span class="role">AI ROI · speed</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg changed">changed</span></div>
+<p class="quote">“Nobody is tracking vooee&#x27;s brand architecture week over week. Before you have distribution, consistency discipline is a tax.”</p>
+<p class="cond"><strong>Final condition:</strong> Foundation Education signs the Alignment Room + Sprint bundle at full price within 30 days; the paid delivery then writes the website re-headline (ship the single 14 July LinkedIn announcement now with the Ground Rules Check as the hook).</p>
+<p class="dis">Disagreed most with <strong>Mark Ritson</strong></p></div><div class="card"><div class="card-top"><h3>Noelle Russell</h3><span class="role">Responsible AI</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“The room is the product. Removing the human is how governance becomes shelfware.”</p>
+<p class="cond"><strong>Final condition:</strong> Reposition only after one paid full-price Alignment Room delivery (Foundation Education first), both IP checks cleared, and a red-team pass on the persona/charter feature — until then sell it off-menu, send the 14 July announcement, and leave the website alone.</p>
+<p class="dis">Disagreed most with <strong>Mike Cannon-Brookes</strong></p></div><div class="card"><div class="card-top"><h3>Warren Buffett</h3><span class="role">Value · moats</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“When a boardroom this varied lands in the same place, the founder should treat it as settled.”</p>
+<p class="cond"><strong>Final condition:</strong> Reposition only after two full-price ($15,000-class) Alignment Room engagements are sold and delivered to leadership-team buyers with delivery days tracked at 4-5 per engagement, both IP checks cleared and the persona feature red-teamed — and then as copy changes inside the existing three-door structure, not a third restructure.</p>
+<p class="dis">Disagreed most with <strong>Mike Cannon-Brookes</strong></p></div><div class="card"><div class="card-top"><h3>Melanie Perkins</h3><span class="role">Product growth</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“Reframe the homepage hero and funnel. A hero swap is not a brand architecture change.”</p>
+<p class="cond"><strong>Final condition:</strong> Reframe the homepage hero and funnel only (no full rewrite), conditional on AIPT/Foundation Education converting to a paid Alignment Room or Sprint at full price within 30 days, with both IP checks cleared and the persona feature red-teamed before the engine becomes public-facing.</p>
+<p class="dis">Disagreed most with <strong>Mark Ritson</strong></p></div><div class="card"><div class="card-top"><h3>Mike Cannon-Brookes</h3><span class="role">Product-led scale</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“You accidentally built software this week. Don&#x27;t sell it as a whiteboard.”</p>
+<p class="cond"><strong>Final condition:</strong> Full repositioning only after two full-price Alignment Room engine sales (AIPT first), the persona feature red-teamed and both IP checks cleared; meanwhile ship the additive front-door swap (Ground Rules Check homepage CTA + one Alignment Room page) and actually launch the $129 pack to warm traffic to generate real conversion data instead of relying on search volume.</p>
+<p class="dis">Disagreed most with <strong>Chris Kohler</strong></p></div><div class="card"><div class="card-top"><h3>Ben Nash</h3><span class="role">Founder cash flow</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“The first full-price invoice clears before the website moves. Cash sequencing is the whole game for a solo founder.”</p>
+<p class="cond"><strong>Final condition:</strong> Reposition the website only after the first full-price paid governance engagement (Foundation Education being the obvious candidate) clears, with both IP checks resolved and the persona feature red-teamed — announce the 14 July structure now and sell in the meantime.</p>
+<p class="dis">Disagreed most with <strong>Mike Cannon-Brookes</strong></p></div><div class="card"><div class="card-top"><h3>Chris Kohler</h3><span class="role">The skeptic</span></div>
+<div class="votes"><span class="vote v-conditional">R1 · CONDITIONAL</span><span class="arrow">→</span><span class="vote v-conditional">Final · CONDITIONAL</span><span class="chg held">held</span></div>
+<p class="quote">“Show me the invoice, not the engine. The question is why this pivot ends differently from the last three products.”</p>
+<p class="cond"><strong>Final condition:</strong> Reposition the website only after one full-price paid delivery of the Alignment Room engine (AIPT first) with tracked delivery economics of $2,500+/day, both IP checks cleared, and the persona feature red-teamed.</p>
+<p class="dis">Disagreed most with <strong>Melanie Perkins</strong></p></div></div>
+
+<h2>The fights that mattered</h2>
+<div class="panel">
+<p><strong>Facilitation vs software.</strong> Cannon-Brookes: the engine is a product; scope self-serve by day 60 or accept a $204k/year ceiling from two fractional seats. Buffett, Russell and Nash all named him their chief disagreement. Russell's line became the board's most quoted: the room is the product; the silent capture only includes the quiet voices because a facilitator holds the room.</p>
+<p><strong>Consistency vs speed.</strong> Ritson wanted the 14 July positioning honoured for 90 days. Miller: consistency discipline before distribution is a tax, and the packaging window for this category is 12–18 months. Perkins split the difference that most of the board adopted: a homepage hero reframe is not a brand architecture change.</p>
+<p><strong>What AIPT proves.</strong> Real, senior, multi-product demand, and it arrived through the existing door. Evidence the engine is a superb second room; not yet evidence it is the front door.</p>
+<p><strong>The pattern.</strong> Kohler: masterclasses retired, policy pack shelved, restructure superseded in eight days. This pivot ends differently only if an invoice exists.</p>
+</div>
+<footer>vooee · synthetic advisory board · personas simulated from public bodies of work via the AI Boardroom registry · not real individuals' views · 22 July 2026</footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>'$'+Math.round(n).toLocaleString();
+function calc(){
+ const e=+$('s_e').value,p=+$('s_p').value,d=+$('s_d').value,w=+$('s_w').value,f=+$('s_f').value,b=+$('s_b').value;
+ $('o_e').textContent=e;$('o_p').textContent=fmt(p);$('o_d').textContent=d;$('o_w').textContent=w;$('o_f').textContent=f;$('o_b').textContent=b;
+ const rev=e*p+w*1900+f*8500;
+ const days=e*d+w*0.5+f*6+b;
+ const rate=days>0?rev/days:0;
+ $('r_rev').textContent=fmt(rev);
+ $('r_days').textContent=Math.round(days);
+ $('r_rate').textContent=fmt(rate);
+ $('r_build').textContent=fmt(b*1000);
+ $('r_ratebox').className='out'+(rate<3000?' warn':'');
+}
+document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',calc));calc();
+</script></html>
