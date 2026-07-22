@@ -17,15 +17,17 @@ Naming decision embedded here for Jeanna's sign-off: the $1,900 AI Working Sessi
 ### New intro line above the ladder
 Every engagement starts in the Alignment Room. What happens next depends on what your roadmap says and how much help you want carrying it out.
 
-### Rung 1 (renamed and rewritten; buyer state first per Miller, claims softened per Kohler)
+### Rung 1 (renamed and rewritten; buyer state first per Miller, claims softened per Kohler, mechanics removed per Jeanna 22 Jul)
 **Start here. The Alignment Room. $1,900 AUD.**
-For businesses that want AI but can't yet say why. Half a day with your leadership team, run as a live session on your own devices. Everyone answers the same questions in silence first: what you actually want AI for, what worries you, which decisions should always stay with a person. Then the answers go up on the screen, side by side.
+For businesses that want AI but can't yet say why. Half a day with your leadership team. We surface how each of you thinks AI might be applied in the business, the optimistic and the pessimistic, then find where alignment already exists and name the tensions worth resolving while they are still cheap to resolve.
 
 Leadership teams often discover they hold five different answers to "why do we want AI?". Surfacing that early is the point: alignment first, tools second. By the end of the half day you have one answer, written in your own words, along with a 90-day roadmap and the first draft of your AI ground rules, built in the room from what your team said.
 
 And if the honest answer in parts of your business is "we shouldn't", the roadmap says that too.
 
 *(Card footer: Half a day. Your whole leadership team. You leave with the roadmap.)*
+
+*(Mechanics rule, Jeanna's call 22 July: the delivery details, devices, silent capture, the screen reveal, the word cloud, stay out of public copy and proposals. They are theatre discovered in the room, and keeping them out keeps the copy honest before the app is built and dry-run. The proposal to FEG uses the same outcome language as this card.)*
 
 ### Rung 2 (measurement first per Miller and Ritson; "exactly" softened per Kohler)
 **Go deeper. The 90-Day Engagement. $15,000 AUD.**
