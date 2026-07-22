@@ -61,6 +61,16 @@ The full boundaries interview is too rich to rush in a group session, and it des
 - The lite pack (doc 07) is untouched: self-servers get documents; facilitated clients get the room, the app and the personas. The tier line from doc 07 holds exactly.
 - Demo cost is near zero once v1 exists: a two-minute screen recording of the tension report appearing is a proof-of-practice social post (pillar 1) that no competitor in the AU SMB space is showing.
 
+## The Sprint reskin (same engine, second product)
+Jeanna's call, 22 July: reskin this for the six-week AI Enablement Sprint. The engine (framed teaching → silent capture → automatic synthesis → live reveal → 1:1 depth → closing measurement) maps onto the Sprint's existing structure almost without force:
+
+- **Week 1, AI Foundations:** the warm-up cloud ("one word for how AI feels right now") opens the sprint; with a team cohort the anxiety cloud is Section's 52% stat made local, on their own screen. Silent capture follows the foundations teaching: confidence baseline, worries, and the honest tool discovery. Anonymity matters *more* here than with a C-suite; nobody admits shadow AI use with their manager watching, and the anonymous tool list is exactly the discovery the governance work needs.
+- **Week 2, goal setting and project identification:** the tension report becomes an **opportunity map**: where the cohort's time goes, where friction repeats, candidate projects surfaced live. The Eisenhower grid from the existing workshop decks becomes the live sorting screen instead of a static card.
+- **Weeks 3 to 5, 1:1 coaching:** each person's captured answers arrive as their coaching brief; personalisation without prep time.
+- **Week 6, closing session:** re-capture, and the reveal is day-0 next to day-42: the clouds side by side, the confidence scores moved. That before/after IS the proficiency pulse from the alignment work (docs 02 and 05), which means the app doubles as the measurement instrument, and the post-sprint leadership report largely writes itself from the same data.
+
+One build, two products: question sets and branding are the only fork. Working Session skin captures leaders and drafts governance; Sprint skin captures a cohort and drives projects plus measurement. Same Airtable, same report engine, same room theatre. If both skins prove out, the same engine likely reskins again for webinar-scale (Claude 101 live polls), but that is a later thought, not a commitment.
+
 ## Decisions for Jeanna
 1. Run the MVP (forms + Claude Project) with the next Working Session client, before building anything?
 2. Naming: "The Alignment Room" is a working title; needs the usual collision check against existing product names.
