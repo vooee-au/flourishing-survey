@@ -12,17 +12,11 @@
 
 ## What I heard on Tuesday
 
-Four things stayed with me from Tuesday's session with Lou, Ron, Shane and yourself.
+Two themes ran through the session with Lou, Ron, Shane and yourself, and each one points at a specific piece of work.
 
-First, the appetite is real and it is immediate. You want Claude working in sales and marketing now, without waiting for the HubSpot migration or the new websites to land.
+The first is about direction. Your leadership team is curious about what AI can do for FEG and wants to understand it properly, and the room's own discussion showed the question that comes with that: sales and marketing first, but where do the student journey, events and operations fit, and when? Questions like that are best answered once, together, with an agreed position and a set of ground rules to work from. That is part one of this proposal.
 
-Second, you were clear about the destination: a team that builds and runs this work itself. Not a dependency on me, and not a dashboard that decays the day I stop maintaining it.
-
-Third, the room raised a question that deserves a proper answer: sales and marketing first, but where do the student journey, events and operations fit, and when? That is a leadership question, and there is a good way to answer it properly rather than by default.
-
-Fourth, and it might be the biggest: your leadership team wants to understand this properly, and right now there is nothing underneath the enthusiasm. No agreed position on what AI is for at FEG, no ground rules on what the tools may and may not touch. That is completely normal at this stage, and it is also the thing to fix first, because every other decision gets easier once it exists.
-
-This proposal covers all four, in order.
+The second is about momentum. You want Claude working in sales and marketing now, without waiting for the HubSpot migration or the new websites, and you were clear about the destination: a team that builds and runs this work itself. Not a dependency on me, and not a dashboard that decays the day I stop maintaining it. That is part two.
 
 ## The shape I recommend
 
@@ -30,9 +24,7 @@ Two parts, run back to back.
 
 ### Part one: the Alignment Room (your leadership team, half a day)
 
-A working session with a difference. Your leaders each answer the same questions independently, on their own devices, in the room: what AI is for at Foundation Education and AIPT, what worries them, which decisions should always stay with a person, and where the effort goes first. Then the answers go up on the screen, side by side.
-
-Where the team already agrees, we move fast. Where views differ, and they will, we sort it out in the room while it is cheap to do so. "Sales and marketing first" gets pressure-tested against everything else on the table, so the order of work is something the whole leadership team owns rather than inherits.
+A working session with your leadership team. We'll surface how each of you thinks AI might be applied at FEG, the optimistic and the pessimistic, find where alignment already exists, and identify the areas of tension worth resolving while it is cheap to do so. "Sales and marketing first" gets pressure-tested against everything else on the table, so the order of work is something the whole leadership team owns rather than inherits.
 
 You leave with:
 - A written 90-day roadmap: what to do, in what order, and what to leave alone
