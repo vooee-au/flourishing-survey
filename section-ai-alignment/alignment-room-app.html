@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Alignment Room &middot; session app &middot; vooee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --background:#faf7f1; --linen:#ede7dc; --card:#ffffff; --foreground:#1c2926;
+  --muted:#58625f; --rose:#d9876d; --forest:#2D5F4F; --garden:#4f6e5f; --border:#ddd5c7;
+  --shadow-soft:0 4px 20px -2px rgba(28,41,38,0.07);
+  --shadow-warm:0 20px 50px -12px rgba(28,41,38,0.16);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--background); color:var(--foreground); font-family:'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif; min-height:100vh; -webkit-font-smoothing:antialiased; }
+.serif { font-family:'Fraunces',Georgia,'Times New Roman',serif; }
+.wordmark { font-family:'Bebas Neue',Impact,sans-serif; font-size:22px; letter-spacing:0.03em; transform:rotate(-2deg); display:inline-block; text-transform:uppercase; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:18px 24px; }
+.topbar .mode { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); }
+.wrap { max-width:680px; margin:0 auto; padding:4vh 24px 12vh; }
+.wrap.wide { max-width:1080px; }
+.eyebrow { display:inline-flex; align-items:center; gap:0.75rem; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--rose); margin-bottom:1.2rem; }
+.eyebrow::before { content:''; display:block; width:2rem; height:1px; background:var(--rose); }
+h1,h2 { font-family:'Fraunces',Georgia,serif; font-weight:600; letter-spacing:-0.02em; line-height:1.05; }
+h1 { font-size:clamp(34px,6vw,56px); }
+h2 { font-size:clamp(24px,3.4vw,34px); }
+.italic-accent { font-style:italic; color:var(--garden); }
+.sub { font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:clamp(17px,2vw,21px); color:var(--garden); margin-top:0.9rem; line-height:1.45; }
+.note { font-size:13px; color:var(--muted); line-height:1.6; margin-top:1rem; }
+.proto-banner { background:var(--linen); border:1px solid var(--border); border-radius:0.75rem; padding:10px 16px; font-size:12px; color:var(--muted); line-height:1.5; margin:0 24px 8px; text-align:center; }
+.proto-banner strong { color:var(--foreground); }
+.btn { display:inline-flex; align-items:center; gap:0.6rem; font-family:inherit; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--background); background:var(--forest); border:none; border-radius:999px; padding:0.85rem 1.7rem; cursor:pointer; transition:background 0.2s, transform 0.1s; }
+.btn:hover { background:var(--garden); }
+.btn:active { transform:scale(0.97); }
+.btn.ghost { background:transparent; color:var(--forest); border:1px solid var(--border); }
+.btn.ghost:hover { background:var(--linen); }
+.btn.small { padding:0.55rem 1.1rem; font-size:11px; }
+.btn.rose { background:var(--rose); }
+.choice-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:1.5rem; }
+.panel { background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1.75rem; box-shadow:var(--shadow-soft); margin-top:1.5rem; }
+textarea, input[type=text] { width:100%; font-family:inherit; font-size:16px; color:var(--foreground); background:var(--card); border:1px solid var(--border); border-radius:0.75rem; padding:0.9rem 1rem; line-height:1.55; resize:vertical; }
+textarea:focus, input:focus { outline:2px solid var(--garden); outline-offset:1px; }
+textarea { min-height:110px; }
+label.q { display:block; font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:clamp(20px,2.6vw,27px); letter-spacing:-0.015em; line-height:1.25; margin-bottom:0.4rem; }
+.hint { font-size:13px; color:var(--muted); margin-bottom:1rem; line-height:1.5; }
+.step { display:none; }
+.step.active { display:block; animation:fadein 0.35s ease; }
+@keyframes fadein { from { opacity:0; transform:translateY(6px);} to { opacity:1; transform:none;} }
+@media (prefers-reduced-motion:reduce){ .step.active{animation:none;} }
+.stepnav { display:flex; justify-content:space-between; align-items:center; margin-top:2rem; }
+.stepdots { font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+.slider-row { display:grid; grid-template-columns:1fr 3rem; gap:1rem; align-items:center; padding:0.8rem 0; border-bottom:1px solid var(--border); }
+.slider-row:last-child { border-bottom:none; }
+.slider-row .lab { font-size:14px; line-height:1.4; }
+.slider-row .lab small { display:block; color:var(--muted); font-size:12px; }
+.slider-row input[type=range] { width:100%; accent-color:var(--forest); grid-column:1; }
+.slider-row .val { font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:1.3rem; color:var(--rose); text-align:right; }
+.pill-choice { font-family:inherit; font-size:14px; font-weight:500; padding:0.8rem 1.4rem; border-radius:999px; border:1px solid var(--border); background:var(--card); cursor:pointer; transition:all 0.15s; }
+.pill-choice.on { background:var(--forest); color:var(--background); border-color:var(--forest); }
+/* facilitator */
+.fgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; margin-top:1.5rem; }
+.fcard { background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1.5rem 1.6rem; box-shadow:var(--shadow-soft); }
+.fcard h3 { font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:1.25rem; letter-spacing:-0.015em; margin-bottom:1rem; }
+.fcard.full { grid-column:1 / -1; }
+.cloud { display:flex; flex-wrap:wrap; gap:0.6rem 1.4rem; align-items:baseline; justify-content:center; padding:1.5rem 0.5rem; min-height:120px; }
+.cloud span { font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--forest); line-height:1; }
+.cloud span:nth-child(3n) { color:var(--rose); font-style:italic; }
+.cloud span:nth-child(4n) { color:var(--garden); }
+.confbar { display:grid; grid-template-columns:6.5rem 1fr 2rem; gap:0.8rem; align-items:center; padding:0.45rem 0; font-size:13px; }
+.confbar .track { background:var(--linen); border-radius:999px; height:10px; overflow:hidden; }
+.confbar .fill { height:100%; background:var(--forest); border-radius:999px; }
+.confbar .n { font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--rose); text-align:right; }
+table.heat { width:100%; border-collapse:collapse; font-size:12.5px; }
+table.heat th, table.heat td { padding:0.55rem 0.6rem; text-align:center; border-bottom:1px solid var(--border); }
+table.heat th { font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+table.heat td.area { text-align:left; font-weight:500; font-size:13px; }
+table.heat td.flag { background:rgba(217,135,109,0.14); border-radius:6px; }
+.heat-note { font-size:12px; color:var(--muted); margin-top:0.8rem; }
+.para-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+.para-card { background:var(--background); border:1px solid var(--border); border-radius:0.85rem; padding:1.1rem 1.2rem; }
+.para-card .who { font-size:10.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--rose); margin-bottom:0.6rem; }
+.para-card p { font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:14.5px; line-height:1.55; }
+.list-plain { list-style:none; }
+.list-plain li { padding:0.65rem 0; border-bottom:1px solid var(--border); font-size:14px; line-height:1.5; display:flex; gap:0.8rem; align-items:baseline; }
+.list-plain li:last-child { border-bottom:none; }
+.tag { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:3px 9px; border-radius:999px; flex-shrink:0; }
+.tag.align { background:#e3ece4; color:var(--forest); }
+.tag.tension { background:rgba(217,135,109,0.18); color:#a35b44; }
+.tag.who { background:var(--linen); color:var(--muted); }
+.empty { text-align:center; color:var(--muted); font-style:italic; font-family:'Fraunces',Georgia,serif; padding:2.5rem 1rem; font-size:15px; line-height:1.6; }
+.toolrow { display:flex; gap:10px; flex-wrap:wrap; margin-top:1.4rem; }
+.ai-note { background:var(--linen); border-radius:0.75rem; padding:0.9rem 1.1rem; font-size:12.5px; color:var(--muted); line-height:1.55; margin-top:1rem; }
+.bigword { text-align:center; padding:2rem 0 0.5rem; }
+.bigword .serif { font-size:clamp(30px,5vw,44px); }
+.done-card { text-align:center; padding:4rem 1rem; }
+.done-card h2 { font-size:clamp(30px,5vw,44px); }
+.roster { display:flex; flex-wrap:wrap; gap:8px; margin-top:0.4rem; }
+.roster .chip { background:var(--card); border:1px solid var(--border); border-radius:999px; padding:5px 14px; font-size:12.5px; font-weight:500; }
+footer { text-align:center; font-size:11px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; padding:3rem 0 2rem; }
+</style>
+</head>
+<body>
+<div class="topbar"><span class="wordmark">vooee</span><span class="mode" id="modeLabel">The Alignment Room</span></div>
+<div class="proto-banner"><strong>Prototype.</strong> Answers stay in this browser only. In the live session each leader answers on their own phone, and the synthesis step is generated by Claude, then reviewed by the facilitator before anything reaches the screen.</div>
+
+<!-- ============ LANDING ============ -->
+<div class="wrap" id="view-landing">
+  <div class="eyebrow">A working session with your leadership team</div>
+  <h1>The Alignment <span class="italic-accent">Room.</span></h1>
+  <p class="sub">Where your AI plans start agreeing with each other.</p>
+  <div class="choice-row">
+    <button class="btn" onclick="show('answer')">I'm answering</button>
+    <button class="btn ghost" onclick="show('host')">Facilitator view</button>
+  </div>
+  <p class="note">In the room, leaders land straight on the questions from the QR code. The facilitator view lives on Jeanna's laptop.</p>
+</div>
+
+<!-- ============ PARTICIPANT ============ -->
+<div class="wrap" id="view-answer" style="display:none">
+  <form id="pform" onsubmit="return false;">
+
+  <div class="step active" data-step="0">
+    <div class="eyebrow">Before we start</div>
+    <label class="q">What should we call you?</label>
+    <p class="hint">Initials are fine. Your answers go to Jeanna only; nothing is shown to the room with your name on it unless you say so.</p>
+    <input type="text" id="f_name" placeholder="e.g. JM" autocomplete="off">
+  </div>
+
+  <div class="step" data-step="1">
+    <div class="eyebrow">Warm up</div>
+    <label class="q">One word for how AI makes you feel right now.</label>
+    <p class="hint">First word that comes to mind. It joins the cloud on the screen, anonymously.</p>
+    <input type="text" id="f_word" placeholder="one word" autocomplete="off">
+  </div>
+
+  <div class="step" data-step="2">
+    <div class="eyebrow">The upside</div>
+    <label class="q">What would you love AI to take off your plate?</label>
+    <p class="hint">Think about your own week, not the org chart.</p>
+    <textarea id="f_excites"></textarea>
+  </div>
+
+  <div class="step" data-step="3">
+    <div class="eyebrow">The honest bit</div>
+    <label class="q">What worries you about it?</label>
+    <p class="hint">Say the real one, not the polite one.</p>
+    <textarea id="f_worries"></textarea>
+  </div>
+
+  <div class="step" data-step="4">
+    <div class="eyebrow">Exposure</div>
+    <label class="q">Where is the business most exposed if AI goes wrong here?</label>
+    <textarea id="f_exposure"></textarea>
+  </div>
+
+  <div class="step" data-step="5">
+    <div class="eyebrow">Confidence</div>
+    <label class="q">How confident do you feel leading AI change?</label>
+    <div class="slider-row" style="border:none;">
+      <input type="range" id="f_conf" min="1" max="10" value="5" oninput="document.getElementById('confVal').textContent=this.value">
+      <div class="val" id="confVal">5</div>
+    </div>
+    <label class="q" style="font-size:clamp(16px,2vw,20px);margin-top:1rem;">Why that number?</label>
+    <textarea id="f_confwhy" style="min-height:80px;"></textarea>
+  </div>
+
+  <div class="step" data-step="6">
+    <div class="eyebrow">The snapshot</div>
+    <label class="q">Score where the business is today.</label>
+    <p class="hint">In pencil. 1 means nowhere, 10 means sorted.</p>
+    <div class="panel" style="margin-top:0.8rem;padding:1.1rem 1.4rem;">
+      <div class="slider-row"><div class="lab">Leadership agreement on what AI is for</div><div class="val" data-v="r0">5</div><input type="range" min="1" max="10" value="5" data-r="0" oninput="rv(this)"></div>
+      <div class="slider-row"><div class="lab">Ground rules <small>who decides, what is off limits</small></div><div class="val" data-v="r1">5</div><input type="range" min="1" max="10" value="5" data-r="1" oninput="rv(this)"></div>
+      <div class="slider-row"><div class="lab">Trust <small>do people feel safe saying they use AI?</small></div><div class="val" data-v="r2">5</div><input type="range" min="1" max="10" value="5" data-r="2" oninput="rv(this)"></div>
+      <div class="slider-row"><div class="lab">Capability <small>can people use it well, not just use it?</small></div><div class="val" data-v="r3">5</div><input type="range" min="1" max="10" value="5" data-r="3" oninput="rv(this)"></div>
+      <div class="slider-row"><div class="lab">Tools and data <small>right tools, safe data</small></div><div class="val" data-v="r4">5</div><input type="range" min="1" max="10" value="5" data-r="4" oninput="rv(this)"></div>
+      <div class="slider-row"><div class="lab">Commercial value <small>is it showing up in the work?</small></div><div class="val" data-v="r5">5</div><input type="range" min="1" max="10" value="5" data-r="5" oninput="rv(this)"></div>
+    </div>
+  </div>
+
+  <div class="step" data-step="7">
+    <div class="eyebrow">The big one</div>
+    <label class="q">Why does this business want AI?</label>
+    <p class="hint">One honest paragraph, in your words. Not the brochure version.</p>
+    <textarea id="f_why" style="min-height:150px;"></textarea>
+  </div>
+
+  <div class="step" data-step="8">
+    <div class="eyebrow">One deliberate choice</div>
+    <label class="q">For the next ninety days, is AI here mainly to save time, or mainly to grow the business?</label>
+    <p class="hint">You can want both. Pick which one leads.</p>
+    <div class="choice-row" id="cutcreate">
+      <button type="button" class="pill-choice" data-cc="Save time" onclick="pick(this)">Save time</button>
+      <button type="button" class="pill-choice" data-cc="Grow the business" onclick="pick(this)">Grow the business</button>
+      <button type="button" class="pill-choice" data-cc="Genuinely torn" onclick="pick(this)">Genuinely torn</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="9">
+    <div class="eyebrow">The lines that don't move</div>
+    <label class="q">Which decisions should always stay with a person?</label>
+    <p class="hint">Whatever the tool promises. Up to three.</p>
+    <input type="text" id="f_h1" placeholder="1." autocomplete="off" style="margin-bottom:10px;">
+    <input type="text" id="f_h2" placeholder="2." autocomplete="off" style="margin-bottom:10px;">
+    <input type="text" id="f_h3" placeholder="3." autocomplete="off">
+  </div>
+
+  <div class="step" data-step="10">
+    <div class="done-card">
+      <div class="eyebrow" style="justify-content:center;">Done</div>
+      <h2>Thank you. <span class="italic-accent">Go get a coffee.</span></h2>
+      <p class="note" style="max-width:34em;margin:1rem auto 0;">While you're gone, your answers join the rest of the room's. When you come back: where you agree, where you differ, and what your own words say about the way forward.</p>
+    </div>
+  </div>
+
+  <div class="stepnav" id="stepnav">
+    <button type="button" class="btn ghost small" id="backBtn" onclick="step(-1)">Back</button>
+    <span class="stepdots" id="stepdots"></span>
+    <button type="button" class="btn small" id="nextBtn" onclick="step(1)">Next</button>
+  </div>
+  </form>
+</div>
+
+<!-- ============ FACILITATOR ============ -->
+<div class="wrap wide" id="view-host" style="display:none">
+  <div class="eyebrow">Facilitator view &middot; private until you choose otherwise</div>
+  <h2 id="hostTitle">The room, so far.</h2>
+  <div class="roster" id="roster"></div>
+  <div class="toolrow">
+    <button class="btn small" onclick="genReport()">Generate the tension report</button>
+    <button class="btn ghost small" onclick="loadDemo()">Load demo leadership team</button>
+    <button class="btn ghost small" id="revealBtn" onclick="toggleReveal()">Show names</button>
+    <button class="btn ghost small" onclick="clearAll()">Clear all answers</button>
+  </div>
+  <div class="ai-note">In production, "Generate" sends the answers to Claude with a fixed brief and returns the synthesis below for your review. In this prototype the numbers are computed live and the narrative is shown for the demo dataset.</div>
+
+  <div id="report"></div>
+</div>
+
+<footer>vooee &middot; the alignment room &middot; prototype</footer>
+
+<script>
+/* ---------- state ---------- */
+const KEY = 'ar_responses_v1';
+const load = () => JSON.parse(localStorage.getItem(KEY) || '[]');
+const save = d => localStorage.setItem(KEY, JSON.stringify(d));
+let reveal = false;
+const AREAS = ['Leadership agreement','Ground rules','Trust','Capability','Tools and data','Commercial value'];
+
+/* ---------- routing ---------- */
+function show(v){
+  ['landing','answer','host'].forEach(x => document.getElementById('view-'+x).style.display = (x===v?'':'none'));
+  document.getElementById('modeLabel').textContent = v==='answer' ? 'Your answers · private' : v==='host' ? 'Facilitator' : 'The Alignment Room';
+  if (v==='host') render();
+  if (v==='answer') { cur=0; paint(); }
+}
+
+/* ---------- participant flow ---------- */
+let cur = 0; const STEPS = 11;
+function paint(){
+  document.querySelectorAll('#view-answer .step').forEach(s => s.classList.toggle('active', +s.dataset.step===cur));
+  document.getElementById('stepdots').textContent = cur<STEPS-1 ? `Question ${cur+1} of ${STEPS-1}` : '';
+  document.getElementById('backBtn').style.visibility = (cur===0||cur===STEPS-1)?'hidden':'visible';
+  document.getElementById('nextBtn').textContent = cur===STEPS-2 ? 'Send' : 'Next';
+  document.getElementById('nextBtn').style.display = cur===STEPS-1 ? 'none' : '';
+}
+function step(d){
+  if (d>0 && cur===STEPS-2) submit();
+  cur = Math.min(STEPS-1, Math.max(0, cur+d));
+  paint(); window.scrollTo({top:0});
+}
+function rv(el){ document.querySelector(`[data-v="r${el.dataset.r}"]`).textContent = el.value; }
+function pick(btn){ document.querySelectorAll('#cutcreate .pill-choice').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); }
+function submit(){
+  const g = id => document.getElementById(id).value.trim();
+  const ready = Array.from(document.querySelectorAll('[data-r]')).map(r=>+r.value);
+  const d = load();
+  d.push({
+    name: g('f_name') || 'Anonymous', word: g('f_word'), excites: g('f_excites'),
+    worries: g('f_worries'), exposure: g('f_exposure'),
+    conf: +document.getElementById('f_conf').value, confwhy: g('f_confwhy'),
+    ready, why: g('f_why'),
+    cc: (document.querySelector('#cutcreate .on')||{}).dataset?.cc || '',
+    human: [g('f_h1'),g('f_h2'),g('f_h3')].filter(Boolean),
+    demo:false, t: Date.now()
+  });
+  save(d);
+}
+
+/* ---------- demo data ---------- */
+const DEMO = [
+ {name:'Alex · CEO', word:'impatient', conf:8, confwhy:'I can see where this goes; I need the team to see it too.', ready:[8,2,6,4,5,3], cc:'Grow the business',
+  why:'AI is how we grow enrolments without growing headcount at the same rate. If we get this right we reach more students, faster, with the team we already have.',
+  excites:'Board reporting, market scanning, first drafts of everything.', worries:'That we move too slowly and a competitor makes us look old.', exposure:'Standing still.',
+  human:['Final say on strategy and partnerships','Hiring']},
+ {name:'Sam · Head of Sales', word:'excited', conf:7, confwhy:'The team is already using it; I want to make it official.', ready:[4,2,7,5,6,5], cc:'Grow the business',
+  why:'Every lead we are slow to follow up is revenue lost. AI should be working our pipeline around the clock: follow-ups, call summaries, coaching the newer reps.',
+  excites:'Automated lead follow-up, call transcription, objection practice for new reps.', worries:'Head office slowing us down with rules before we see the value.', exposure:'Reps pasting student details into free tools. It is probably already happening.',
+  human:['Discounting and payment plans','Difficult student conversations']},
+ {name:'Jordan · Marketing', word:'curious', conf:6, confwhy:'Comfortable with the tools, less sure about the guardrails.', ready:[4,3,6,6,6,4], cc:'Genuinely torn',
+  why:'AI lets a small marketing team act like a big one: more content, faster campaigns, better read on what is working. But the brand has to stay ours, not the machine’s.',
+  excites:'The content engine, the dashboards, trend spotting.', worries:'Everything starting to sound the same. Brand drift, one post at a time.', exposure:'AI-written claims about courses or outcomes that are not quite accurate, published at volume.',
+  human:['Final approval on brand voice and claims','Anything a regulator might read']},
+ {name:'Riley · Operations', word:'cautious', conf:3, confwhy:'I have seen tools arrive with a bang and leave a mess.', ready:[3,1,4,3,4,3], cc:'Save time',
+  why:'If AI means fewer hours lost to admin and rework, good. But student communications are relationships, and I do not want a bot deciding how we speak to a struggling student.',
+  excites:'Scheduling, compliance paperwork, chasing documents.', worries:'Automation touching student welfare before anyone agreed it should.', exposure:'Student personal information. One slip and the trust is gone.',
+  human:['Any communication with a struggling or at-risk student','Enrolment exceptions','Complaints']},
+ {name:'Priya · Finance', word:'sceptical', conf:4, confwhy:'Show me the return and I am in. Nobody has shown me yet.', ready:[3,2,5,3,5,2], cc:'Save time',
+  why:'We should use AI where it measurably cuts cost or protects margin: reporting, reconciliation, forecasting. Everything else is a hobby until someone shows me numbers.',
+  excites:'Month-end reporting. Board packs. Reconciliation.', worries:'Paying for twelve tools that each save nobody any time.', exposure:'Spending without a way to measure the return, then defending it at budget time.',
+  human:['Pricing','Anything that touches payroll or supplier payments']}
+];
+function loadDemo(){ save(DEMO.map(d=>({...d, demo:true, t:Date.now()}))); render(); }
+function clearAll(){ if(confirm('Clear all answers in this browser?')){ localStorage.removeItem(KEY); render(); } }
+function toggleReveal(){ reveal = !reveal; document.getElementById('revealBtn').textContent = reveal?'Hide names':'Show names'; render(); }
+
+/* ---------- facilitator render ---------- */
+function who(i,d){ return reveal ? d[i].name : 'Leader '+String.fromCharCode(65+i); }
+function render(){
+  const d = load();
+  const R = document.getElementById('report');
+  document.getElementById('roster').innerHTML = d.length
+    ? d.map((p,i)=>`<span class="chip">${who(i,d)}${p.demo?' · demo':''}</span>`).join('')
+    : '<span class="chip">No answers yet</span>';
+  if(!d.length){ R.innerHTML = '<div class="fcard full" style="margin-top:1.5rem;"><div class="empty">The room is quiet. Load the demo leadership team to see what a full session looks like, or open "I’m answering" in another tab and add yourself.</div></div>'; return; }
+
+  /* cloud */
+  const words = d.map(p=>p.word).filter(Boolean);
+  const freq = {}; words.forEach(w=>{ const k=w.toLowerCase(); freq[k]=(freq[k]||0)+1; });
+  const cloud = Object.entries(freq).map(([w,n])=>`<span style="font-size:${Math.min(18+n*14,64)}px">${w}</span>`).join('');
+
+  /* confidence */
+  const confbars = d.map((p,i)=>`<div class="confbar"><span>${who(i,d)}</span><div class="track"><div class="fill" style="width:${p.conf*10}%"></div></div><span class="n">${p.conf}</span></div>`).join('');
+  const confs = d.map(p=>p.conf);
+  const spread = Math.max(...confs)-Math.min(...confs);
+
+  /* readiness heat */
+  let heat = '<table class="heat"><tr><th style="text-align:left">Area</th>' + d.map((p,i)=>`<th>${who(i,d)}</th>`).join('') + '<th>Spread</th></tr>';
+  const flags = [];
+  AREAS.forEach((a,ai)=>{
+    const vals = d.map(p=>p.ready[ai]);
+    const sp = Math.max(...vals)-Math.min(...vals);
+    if (sp>=4) flags.push(a);
+    heat += `<tr><td class="area">${a}</td>` + vals.map(v=>`<td>${v}</td>`).join('') + `<td class="${sp>=4?'flag':''}">${sp}</td></tr>`;
+  });
+  heat += '</table><p class="heat-note">A spread of 4 or more means the leadership team is looking at different businesses. Those rows are conversation, not scoring error.</p>';
+
+  /* paragraphs */
+  const paras = d.map((p,i)=>`<div class="para-card"><div class="who">${who(i,d)} · ${p.cc||'no pick'}</div><p>&ldquo;${p.why||'(blank)'}&rdquo;</p></div>`).join('');
+
+  /* stays human */
+  const humans = d.flatMap((p,i)=>p.human.map(h=>({h, i})));
+  const humanList = humans.map(x=>`<li><span class="tag who">${who(x.i,d)}</span>${x.h}</li>`).join('');
+
+  /* alignments and tensions (computed + demo narrative) */
+  const groundVals = d.map(p=>p.ready[1]);
+  const items = [];
+  if (Math.max(...groundVals)<=4) items.push({t:'align', s:'Everyone scored ground rules at 4 or below. The whole room already agrees the rules do not exist yet. That is your fastest win today: nobody has to be persuaded.'});
+  if (spread>=4) items.push({t:'tension', s:`Confidence to lead this ranges from ${Math.min(...confs)} to ${Math.max(...confs)}. The plan has to work for both ends of that range, or the confident end will run ahead of the room.`});
+  flags.forEach(f=>items.push({t:'tension', s:`"${f}" scores disagree by 4+ points. Same business, different views. Worth ten minutes.`}));
+  const ccs = [...new Set(d.map(p=>p.cc).filter(Boolean))];
+  if (ccs.length>1) items.push({t:'tension', s:`The room is split on the ninety-day priority: ${ccs.join(' vs ')}. This is the cut-vs-create decision, and it shapes the whole roadmap.`});
+  if (d.every(p=>p.demo)) {
+    items.push({t:'tension', s:'Sam wants automated lead follow-up running around the clock; Riley’s non-negotiable is that communication with struggling students stays human. Both are right. The ground rules need a line that separates prospect messaging from student welfare, today.'});
+    items.push({t:'align', s:'Three of five worry-answers are about student or personal data in the wrong tools, unprompted. Your data rule will be the least controversial line in the policy.'});
+    items.push({t:'align', s:'Nobody’s "why" mentions replacing people. The fear in the room is drift and risk, not redundancy. Say that out loud; it changes the temperature.'});
+  }
+  const insight = items.map(x=>`<li><span class="tag ${x.t}">${x.t==='align'?'Aligned':'Tension'}</span>${x.s}</li>`).join('');
+
+  R.innerHTML = `
+    <div class="fgrid">
+      <div class="fcard full"><h3>One word for how AI feels</h3><div class="cloud">${cloud||'<span style="font-size:16px;color:var(--muted)">no words yet</span>'}</div></div>
+      <div class="fcard"><h3>Confidence to lead this</h3>${confbars}</div>
+      <div class="fcard"><h3>Decisions that stay with a person</h3><ul class="list-plain">${humanList||'<li>None given yet</li>'}</ul></div>
+      <div class="fcard full"><h3>The snapshot, side by side</h3>${heat}</div>
+      <div class="fcard full"><h3>Why does this business want AI? · ${d.length} answers</h3><div class="para-grid">${paras}</div></div>
+      <div class="fcard full" id="insightCard" style="display:none"><h3>Where you align, where you differ</h3><ul class="list-plain">${insight}</ul>
+        <div class="ai-note">Facilitator's call on what the room sees, and whether names are shown. Raise sensitive tensions without attribution.</div></div>
+    </div>`;
+}
+function genReport(){
+  render();
+  const c = document.getElementById('insightCard');
+  if (c){ c.style.display=''; c.scrollIntoView({behavior:'smooth'}); }
+}
+show('landing');
+</script>
+</body>
+</html>
