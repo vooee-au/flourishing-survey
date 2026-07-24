@@ -200,6 +200,13 @@ footer { text-align:center; font-size:11px; color:var(--muted); letter-spacing:0
   </div>
 
   <div class="step" data-step="9">
+    <div class="eyebrow">The time tax</div>
+    <label class="q">What does your week cost you that it shouldn't?</label>
+    <p class="hint">Name up to three tasks that eat your team's time, and place each one where you think it belongs. No wrong answers; the room's grid is where the roadmap starts.</p>
+    <div id="taxRows"></div>
+  </div>
+
+  <div class="step" data-step="10">
     <div class="eyebrow">The lines that don't move</div>
     <label class="q">Which decisions should always stay with a person?</label>
     <p class="hint">Whatever the tool promises. Up to three.</p>
@@ -208,7 +215,7 @@ footer { text-align:center; font-size:11px; color:var(--muted); letter-spacing:0
     <input type="text" id="f_h3" placeholder="3." autocomplete="off">
   </div>
 
-  <div class="step" data-step="10">
+  <div class="step" data-step="11">
     <div class="done-card">
       <div class="eyebrow" style="justify-content:center;">Done</div>
       <h2>Thank you. <span class="italic-accent">Go get a coffee.</span></h2>
@@ -259,7 +266,16 @@ function show(v){
 }
 
 /* ---------- participant flow ---------- */
-let cur = 0; const STEPS = 11;
+let cur = 0; const STEPS = 12;
+const QUADS = ['Start here','AI earns its place','Worth questioning','Stay human-led'];
+document.getElementById('taxRows').innerHTML = [0,1,2].map(i => `
+  <div class="panel" style="padding:1rem 1.2rem;margin-top:${i?'0.8rem':'1rem'};">
+    <input type="text" id="f_task${i}" placeholder="${i+1}. Task that eats the week" autocomplete="off" style="margin-bottom:10px;">
+    <div class="choice-row" style="margin-top:0;gap:8px;" id="quad${i}">
+      ${QUADS.map(q=>`<button type="button" class="pill-choice" style="padding:0.5rem 0.9rem;font-size:12px;" data-q="${q}" onclick="pickQuad(this,${i})">${q}</button>`).join('')}
+    </div>
+  </div>`).join('');
+function pickQuad(btn,i){ document.querySelectorAll(`#quad${i} .pill-choice`).forEach(b=>b.classList.remove('on')); btn.classList.add('on'); }
 function paint(){
   document.querySelectorAll('#view-answer .step').forEach(s => s.classList.toggle('active', +s.dataset.step===cur));
   document.getElementById('stepdots').textContent = cur<STEPS-1 ? `Question ${cur+1} of ${STEPS-1}` : '';
@@ -285,6 +301,7 @@ function submit(){
     ready, why: g('f_why'),
     cc: (document.querySelector('#cutcreate .on')||{}).dataset?.cc || '',
     human: [g('f_h1'),g('f_h2'),g('f_h3')].filter(Boolean),
+    tasks: [0,1,2].map(i => ({ t: g('f_task'+i), q: (document.querySelector(`#quad${i} .on`)||{}).dataset?.q || '' })).filter(x=>x.t),
     demo:false, t: Date.now()
   });
   save(d);
@@ -292,23 +309,23 @@ function submit(){
 
 /* ---------- demo data ---------- */
 const DEMO = [
- {name:'Alex · CEO', word:'impatient', conf:8, confwhy:'I can see where this goes; I need the team to see it too.', ready:[8,2,6,4,5,3], cc:'Grow the business',
+ {name:'Alex · CEO', tasks:[{t:'Board reporting prep',q:'Start here'},{t:'Market and competitor scanning',q:'AI earns its place'},{t:'Strategy and partnership days',q:'Stay human-led'}], word:'impatient', conf:8, confwhy:'I can see where this goes; I need the team to see it too.', ready:[8,2,6,4,5,3], cc:'Grow the business',
   why:'AI is how we grow enrolments without growing headcount at the same rate. If we get this right we reach more students, faster, with the team we already have.',
   excites:'Board reporting, market scanning, first drafts of everything.', worries:'That we move too slowly and a competitor makes us look old.', exposure:'Standing still.',
   human:['Final say on strategy and partnerships','Hiring']},
- {name:'Sam · Head of Sales', word:'excited', conf:7, confwhy:'The team is already using it; I want to make it official.', ready:[4,2,7,5,6,5], cc:'Grow the business',
+ {name:'Sam · Head of Sales', tasks:[{t:'Lead follow-up emails',q:'Start here'},{t:'Call notes after every call',q:'Start here'},{t:'Pricing negotiations',q:'Stay human-led'}], word:'excited', conf:7, confwhy:'The team is already using it; I want to make it official.', ready:[4,2,7,5,6,5], cc:'Grow the business',
   why:'Every lead we are slow to follow up is revenue lost. AI should be working our pipeline around the clock: follow-ups, call summaries, coaching the newer reps.',
   excites:'Automated lead follow-up, call transcription, objection practice for new reps.', worries:'Head office slowing us down with rules before we see the value.', exposure:'Reps pasting student details into free tools. It is probably already happening.',
   human:['Discounting and payment plans','Difficult student conversations']},
- {name:'Jordan · Marketing', word:'curious', conf:6, confwhy:'Comfortable with the tools, less sure about the guardrails.', ready:[4,3,6,6,6,4], cc:'Genuinely torn',
+ {name:'Jordan · Marketing', tasks:[{t:'First drafts of social copy',q:'AI earns its place'},{t:'Monthly performance reports',q:'Start here'},{t:'Campaign concepting',q:'Worth questioning'}], word:'curious', conf:6, confwhy:'Comfortable with the tools, less sure about the guardrails.', ready:[4,3,6,6,6,4], cc:'Genuinely torn',
   why:'AI lets a small marketing team act like a big one: more content, faster campaigns, better read on what is working. But the brand has to stay ours, not the machine’s.',
   excites:'The content engine, the dashboards, trend spotting.', worries:'Everything starting to sound the same. Brand drift, one post at a time.', exposure:'AI-written claims about courses or outcomes that are not quite accurate, published at volume.',
   human:['Final approval on brand voice and claims','Anything a regulator might read']},
- {name:'Riley · Operations', word:'cautious', conf:3, confwhy:'I have seen tools arrive with a bang and leave a mess.', ready:[3,1,4,3,4,3], cc:'Save time',
+ {name:'Riley · Operations', tasks:[{t:'Compliance paperwork',q:'Start here'},{t:'Chasing student documents',q:'AI earns its place'},{t:'Student check-in calls',q:'Stay human-led'}], word:'cautious', conf:3, confwhy:'I have seen tools arrive with a bang and leave a mess.', ready:[3,1,4,3,4,3], cc:'Save time',
   why:'If AI means fewer hours lost to admin and rework, good. But student communications are relationships, and I do not want a bot deciding how we speak to a struggling student.',
   excites:'Scheduling, compliance paperwork, chasing documents.', worries:'Automation touching student welfare before anyone agreed it should.', exposure:'Student personal information. One slip and the trust is gone.',
   human:['Any communication with a struggling or at-risk student','Enrolment exceptions','Complaints']},
- {name:'Priya · Finance', word:'sceptical', conf:4, confwhy:'Show me the return and I am in. Nobody has shown me yet.', ready:[3,2,5,3,5,2], cc:'Save time',
+ {name:'Priya · Finance', tasks:[{t:'Month-end reconciliation',q:'Start here'},{t:'Board pack formatting',q:'AI earns its place'},{t:'Supplier payment approvals',q:'Stay human-led'}], word:'sceptical', conf:4, confwhy:'Show me the return and I am in. Nobody has shown me yet.', ready:[3,2,5,3,5,2], cc:'Save time',
   why:'We should use AI where it measurably cuts cost or protects margin: reporting, reconciliation, forecasting. Everything else is a hobby until someone shows me numbers.',
   excites:'Month-end reporting. Board packs. Reconciliation.', worries:'Paying for twelve tools that each save nobody any time.', exposure:'Spending without a way to measure the return, then defending it at budget time.',
   human:['Pricing','Anything that touches payroll or supplier payments']}
@@ -370,11 +387,18 @@ function render(){
   }
   const insight = items.map(x=>`<li><span class="tag ${x.t}">${x.t==='align'?'Aligned':'Tension'}</span>${x.s}</li>`).join('');
 
+  const QUADS2 = ['Stay human-led','Worth questioning','AI earns its place','Start here'];
+  const quadCells = QUADS2.map(q => {
+    const items2 = d.flatMap((p,i)=>(p.tasks||[]).filter(x=>x.q===q).map(x=>`<li style="border:none;padding:0.25rem 0;"><span class="tag who">${who(i,d)}</span>${x.t}</li>`)).join('');
+    const hot = q==='Start here';
+    return `<div class="para-card" style="${hot?'background:var(--forest);border-color:var(--forest);':''}"><div class="who" style="${hot?'color:var(--background);':''}">${q}</div><ul class="list-plain" style="${hot?'color:rgba(250,247,241,0.9);':''}font-family:\'Space Grotesk\',sans-serif;font-style:normal;font-size:13px;">${items2||'<li style=\'border:none;\'>nothing yet</li>'}</ul></div>`;
+  }).join('');
   R.innerHTML = `
     <div class="fgrid">
       <div class="fcard full"><h3>One word for how AI feels</h3><div class="cloud">${cloud||'<span style="font-size:16px;color:var(--muted)">no words yet</span>'}</div></div>
       <div class="fcard"><h3>Confidence to lead this</h3>${confbars}</div>
       <div class="fcard"><h3>Decisions that stay with a person</h3><ul class="list-plain">${humanList||'<li>None given yet</li>'}</ul></div>
+      <div class="fcard full"><h3>The time tax, on one grid</h3><div class="para-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">${quadCells}</div><p class="heat-note">The Start here quadrant becomes the first column of the roadmap, chosen by the room itself.</p></div>
       <div class="fcard full"><h3>The snapshot, side by side</h3>${heat}</div>
       <div class="fcard full"><h3>Why does this business want AI? · ${d.length} answers</h3><div class="para-grid">${paras}</div></div>
       <div class="fcard full" id="insightCard" style="display:none"><h3>Where you align, where you differ</h3><ul class="list-plain">${insight}</ul>
