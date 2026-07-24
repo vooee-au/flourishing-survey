@@ -61,6 +61,9 @@ The full boundaries interview is too rich to rush in a group session, and it des
 - The lite pack (doc 07) is untouched: self-servers get documents; facilitated clients get the room, the app and the personas. The tier line from doc 07 holds exactly.
 - Demo cost is near zero once v1 exists: a two-minute screen recording of the tension report appearing is a proof-of-practice social post (pillar 1) that no competitor in the AU SMB space is showing.
 
+## The policy that installs itself (added 22 July, Jeanna's call)
+The AI position and ground rules drafted in the room do double duty: the same words load into the organisation's Claude Enterprise instructions (workspace system prompt / project instructions). So the policy the staff read is the policy the AI follows. Ask Claude to do something on the stays-with-a-person list and it declines, says why, and points to a person. Hard limits become automatic; direction becomes ambient. This turns the governance deliverable from a document into configuration, and it is a natural first task of the 90-Day Engagement's build phase (and a reason the client wants Claude Enterprise/Teams, which vooee can supply and configure). Deck carries this beat on the example-statement card.
+
 ## The Sprint reskin (same engine, second product)
 Jeanna's call, 22 July: reskin this for the six-week AI Enablement Sprint. The engine (framed teaching → silent capture → automatic synthesis → live reveal → 1:1 depth → closing measurement) maps onto the Sprint's existing structure almost without force:
 
