@@ -100,6 +100,23 @@ table.heat td.flag { background:rgba(217,135,109,0.14); border-radius:6px; }
 .roster { display:flex; flex-wrap:wrap; gap:8px; margin-top:0.4rem; }
 .roster .chip { background:var(--card); border:1px solid var(--border); border-radius:999px; padding:5px 14px; font-size:12.5px; font-weight:500; }
 footer { text-align:center; font-size:11px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; padding:3rem 0 2rem; }
+.stmt-box { font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:clamp(16px,1.6vw,20px); line-height:1.65; background:var(--background); border:1px dashed var(--garden); border-radius:0.85rem; padding:1.4rem 1.6rem; outline:none; }
+.stmt-box:focus { border-style:solid; }
+.stmt-hint { font-size:11.5px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; font-weight:600; margin-bottom:0.7rem; }
+#printReport { display:none; }
+@media print {
+  body > *:not(#printReport) { display:none !important; }
+  #printReport { display:block; font-family:Georgia,'Times New Roman',serif; color:#1c2926; padding:0; }
+  #printReport .pr-page { page-break-after:always; padding:2rem 1rem; }
+  #printReport .pr-page:last-child { page-break-after:auto; }
+}
+#printReport h1 { font-family:Georgia,serif; font-size:26px; margin-bottom:2px; }
+#printReport h2 { font-family:Georgia,serif; font-size:16px; margin:18px 0 6px; border-bottom:1px solid #ddd5c7; padding-bottom:4px; }
+#printReport p, #printReport li { font-family:Helvetica,Arial,sans-serif; font-size:12.5px; line-height:1.6; }
+#printReport ul { padding-left:18px; margin:6px 0; }
+#printReport .pr-meta { font-family:Helvetica,Arial,sans-serif; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:#58625f; margin-bottom:14px; }
+#printReport .pr-stmt { font-family:Georgia,serif; font-style:italic; font-size:15px; line-height:1.7; border-left:3px solid #2D5F4F; padding:6px 0 6px 14px; margin:8px 0; }
+#printReport .pr-foot { font-family:Helvetica,Arial,sans-serif; font-size:9.5px; color:#58625f; margin-top:18px; }
 </style>
 </head>
 <body>
@@ -243,6 +260,7 @@ footer { text-align:center; font-size:11px; color:var(--muted); letter-spacing:0
   <div class="toolrow">
     <button class="btn small" onclick="genReport()">Generate the tension report</button>
     <button class="btn ghost small" onclick="loadDemo()">Load demo leadership team</button>
+    <button class="btn ghost small" onclick="openReport()">Written report · print or save as PDF</button>
     <button class="btn ghost small" onclick="clearAll()">Clear all answers</button>
   </div>
   <div class="ai-note">In production, "Generate" sends the answers to Claude with a fixed brief and returns the synthesis below for your review. In this prototype the numbers are computed live and the narrative is shown for the demo dataset.</div>
@@ -250,6 +268,7 @@ footer { text-align:center; font-size:11px; color:var(--muted); letter-spacing:0
   <div id="report"></div>
 </div>
 
+<div id="printReport"></div>
 <footer>vooee &middot; the alignment room &middot; prototype</footer>
 
 <script>
@@ -412,6 +431,18 @@ function render(){
   const sec = (title, arr, cls) => arr.length ? `<h3 style="margin-top:1.4rem;">${title}</h3><ul class="list-plain">${arr.map(x=>`<li><span class="tag ${cls}">${cls==='align'?'Aligned':cls==='tension'?'Tension':'Debate'}</span>${x.s||x}</li>`).join('')}</ul>` : '';
   const insight = sec('Strongest alignment', aligns, 'align') + sec('Biggest friction', tensions, 'tension') + sec('Take it to the floor', debates, 'who');
 
+  /* draft statement */
+  const demoMode = d.length && d.every(p=>p.demo);
+  let stmt;
+  if (demoMode) {
+    stmt = "We use AI to reach more students and take the repetitive work out of our weeks, so our people have more time for teaching, care and the conversations that matter. A person stays accountable for every decision that affects a student's enrolment, progress or wellbeing, and for our pricing. Student and staff personal information only goes into tools we have approved, never into free ones. We are open about where AI has shaped what people receive, and we measure what it returns: if it is not helping students or the business in ways we can see, we stop. We review these ground rules every quarter, because this technology changes faster than policies do.";
+  } else {
+    const topHuman = humans.slice(0,3).map(x=>x.h.toLowerCase()).join('; ') || '[the decisions this room names]';
+    const lead = ccs.length===1 && ccs[0] ? (ccs[0]==='Save time' ? 'to take repetitive work out of our weeks' : ccs[0]==='Grow the business' ? 'to grow what this business can do' : 'to [what this room agrees it is for]') : 'to [what this room agrees it is for]';
+    stmt = `We use AI ${lead}, so our people have more time for the work that needs a person. A person stays accountable for ${topHuman}. Personal and client information only goes into tools we have approved. We are open about where AI has shaped what people receive. And we review these ground rules every quarter, because this technology changes faster than policies do.`;
+  }
+  window._stmt = stmt;
+
   const QUADS2 = ['Stay human-led','Worth questioning','AI earns its place','Start here'];
   const quadCells = QUADS2.map(q => {
     const items2 = d.flatMap((p,i)=>(p.tasks||[]).filter(x=>x.q===q).map(x=>`<li style="border:none;padding:0.25rem 0;"><span class="tag who">${who(i,d)}</span>${x.t}</li>`)).join('');
@@ -428,12 +459,73 @@ function render(){
       <div class="fcard full"><h3>Why does this business want AI? · ${d.length} answers</h3><div class="para-grid">${paras}</div></div>
       <div class="fcard full" id="insightCard" style="display:none"><h3>The room, read honestly</h3>${insight}
         <div class="ai-note">Facilitator's call on what the room sees, and whether names are shown. Raise sensitive tensions without attribution.</div></div>
+      <div class="fcard full" id="stmtCard" style="display:none"><h3>Draft governance statement · edit it live</h3>
+        <div class="stmt-hint">Assembled from the room's own answers. Click into it and edit aloud until it sounds like this business.</div>
+        <div class="stmt-box" id="stmtBox" contenteditable="true">${window._stmt||''}</div>
+        <div class="toolrow" style="margin-top:1rem;">
+          <button class="btn small" onclick="copyStmt(this)">Copy for your Claude instructions</button>
+        </div>
+        <div class="ai-note">Double duty: these same words load into the organisation's Claude instructions, so the policy the team reads is the policy the AI follows. In production this draft is written by Claude from the full answer set.</div></div>
     </div>`;
 }
 function genReport(){
   render();
   const c = document.getElementById('insightCard');
+  const sc = document.getElementById('stmtCard');
+  if (sc) sc.style.display='';
   if (c){ c.style.display=''; c.scrollIntoView({behavior:'smooth'}); }
+}
+function copyStmt(btn){
+  const t = document.getElementById('stmtBox').innerText;
+  navigator.clipboard.writeText(t).then(()=>{ const o=btn.textContent; btn.textContent='Copied'; setTimeout(()=>btn.textContent=o,1800); });
+}
+function openReport(){
+  const d = load();
+  if (!d.length){ alert('No answers yet. Load the demo team first.'); return; }
+  const stmtEl = document.getElementById('stmtBox');
+  const stmt = stmtEl ? stmtEl.innerText : (window._stmt||'');
+  const names = d.map(p=>p.name).join(', ');
+  const words = d.map(p=>p.word).filter(Boolean).join(' · ');
+  const humans2 = [...new Set(d.flatMap(p=>p.human))];
+  const startHere = d.flatMap(p=>(p.tasks||[]).filter(x=>x.q==='Start here').map(x=>x.t));
+  const earns = d.flatMap(p=>(p.tasks||[]).filter(x=>x.q==='AI earns its place').map(x=>x.t));
+  const stays = d.flatMap(p=>(p.tasks||[]).filter(x=>x.q==='Stay human-led').map(x=>x.t));
+  const confs2 = d.map(p=>p.conf);
+  const today = new Date().toLocaleDateString('en-AU', {day:'numeric', month:'long', year:'numeric'});
+  document.getElementById('printReport').innerHTML = `
+  <div class="pr-page">
+    <h1>The Alignment Room</h1>
+    <div class="pr-meta">Session record &middot; ${today} &middot; facilitated by Jeanna Manifold, vooee</div>
+    <h2>Why we did this</h2>
+    <p>Our leadership team spent half a day answering the same questions about AI, independently and honestly, then compared the answers. The aim: one agreed position on what AI is for in this business, ground rules for using it well, and a first ninety days everyone owns. This document is the record, written so you can share how we got there, not just what we decided.</p>
+    <h2>Who was in the room</h2>
+    <p>${names}. Answers were given anonymously under session nicknames; leaders chose what to claim aloud. One word each on how AI felt walking in: <em>${words||'—'}</em>. Confidence to lead this ranged from ${Math.min(...confs2)} to ${Math.max(...confs2)} out of 10, which is exactly why we started with alignment rather than tools.</p>
+    <h2>What we found when we compared answers</h2>
+    <p>Where we already agreed, we moved fast. Where we differed, we said so in the room, while disagreeing was still cheap. The short version:</p>
+    <ul>
+      <li><strong>Agreed without effort:</strong> the ground rules did not exist yet and everyone knew it; protecting personal and client data was a shared instinct before anyone raised it; and nobody's reason for wanting AI was about replacing people.</li>
+      <li><strong>Needed the room:</strong> how fast to move, and where automation should stop and a person should begin. We debated these openly, argued both sides, and drew the lines together rather than by default.</li>
+    </ul>
+    <h2>The decisions that stay with a person</h2>
+    <ul>${humans2.map(h=>`<li>${h}</li>`).join('')}</ul>
+  </div>
+  <div class="pr-page">
+    <h2>Our AI position</h2>
+    <p style="font-family:Helvetica,Arial,sans-serif;">Drafted live from our own words, edited together in the room:</p>
+    <div class="pr-stmt">&ldquo;${stmt}&rdquo;</div>
+    <p>These words do double duty. They are the short version of our policy for every team member, and they load into our AI tools' instructions, so the rules we agreed are the rules the AI follows.</p>
+    <h2>Our first ninety days</h2>
+    <p>We mapped where our weeks actually go and sorted the work honestly.</p>
+    <ul>
+      ${startHere.length?`<li><strong>Start here</strong> (high time cost, low risk, easy to check): ${startHere.join('; ')}.</li>`:''}
+      ${earns.length?`<li><strong>AI earns its place</strong> (strong candidates, once ground rules are live): ${earns.join('; ')}.</li>`:''}
+      ${stays.length?`<li><strong>Stays human-led</strong> (AI may support, people decide): ${stays.join('; ')}.</li>`:''}
+    </ul>
+    <h2>What happens next</h2>
+    <p>The full roadmap and drafted ground rules arrive in writing within the week. Each leader will walk their team through this record; if anything here surprises you, that conversation is the point. Questions about the ground rules go to the accountable owner named in them; there is no wrong time to ask.</p>
+    <div class="pr-foot">Prepared with vooee (vooee.au) &middot; The Alignment Room session record &middot; This summary reflects what the leadership team agreed in the room; the detailed roadmap and AI ground rules are separate documents. Prototype note: in production this narrative is written by Claude from the full session record and reviewed by the facilitator and the leadership team before circulation.</div>
+  </div>`;
+  window.print();
 }
 show('landing');
 </script>
