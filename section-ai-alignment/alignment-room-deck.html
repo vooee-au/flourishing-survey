@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Alignment Room &middot; vooee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --background:#faf7f1;
+  --linen:#ede7dc;
+  --card:#ffffff;
+  --foreground:#1c2926;
+  --muted-foreground:#58625f;
+  --rose:#d9876d;
+  --secondary:#2D5F4F;
+  --garden:#4f6e5f;
+  --border:#ddd5c7;
+  --shadow-soft: 0 4px 20px -2px rgba(28,41,38,0.07);
+  --shadow-warm: 0 20px 50px -12px rgba(28,41,38,0.16);
+  --side-pad: max(2rem, calc((100vw - 72rem) / 2));
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height:100%; background:var(--background); color:var(--foreground); font-family:'Space Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif; overflow:hidden; -webkit-font-smoothing:antialiased; }
+body.presenting { cursor:none; }
+.stage { position:absolute; inset:0; display:flex; align-items:center; justify-content:flex-start; }
+.card { position:absolute; inset:0; display:none; align-items:center; justify-content:center; padding:14vh var(--side-pad) 10vh; flex-direction:column; text-align:left; opacity:0; transition:opacity 0.4s ease; overflow:hidden; }
+.card.active { display:flex; opacity:1; }
+.col { width:100%; max-width:56rem; margin-right:auto; position:relative; z-index:2; }
+.col-narrow { max-width:44rem; }
+.wordmark { position:absolute; top:4vh; left:var(--side-pad); font-family:'Bebas Neue',Impact,'Arial Black',sans-serif; font-size:clamp(20px,1.6vw,26px); letter-spacing:0.03em; color:var(--foreground); transform:rotate(-2deg); display:inline-block; line-height:1; z-index:3; text-transform:uppercase; }
+.bg-forest .wordmark { color:var(--background); }
+.eyebrow { display:inline-flex; align-items:center; gap:0.875rem; font-size:clamp(11px,0.9vw,14px); font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--rose); margin-bottom:4vh; }
+.eyebrow::before { content:''; display:block; width:2.5rem; height:1px; background:var(--rose); }
+.display { font-family:'Fraunces',Georgia,'Times New Roman',serif; font-weight:600; letter-spacing:-0.025em; line-height:0.98; color:var(--foreground); }
+.italic-accent { font-style:italic; color:var(--garden); font-weight:600; }
+.bg-forest .italic-accent { color:var(--rose); }
+.bg-forest .display { color:var(--background); }
+.h-xl  { font-size:clamp(48px,8.5vw,140px); }
+.h-l   { font-size:clamp(40px,6.5vw,96px); }
+.h-m   { font-size:clamp(28px,4vw,60px); }
+.numeral-anchor { position:absolute; font-family:'Fraunces',Georgia,serif; font-weight:300; font-size:clamp(280px,42vw,620px); color:var(--foreground); opacity:0.05; line-height:0.8; letter-spacing:-0.04em; pointer-events:none; z-index:1; user-select:none; }
+.bg-forest .numeral-anchor { color:var(--background); opacity:0.07; }
+.numeral-anchor.right { top:50%; right:var(--side-pad); transform:translateY(-50%); }
+.subline { font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:clamp(20px,2.4vw,36px); color:var(--garden); letter-spacing:-0.01em; margin-top:3vh; line-height:1.3; font-weight:600; max-width:28em; }
+.bg-forest .subline { color:var(--rose); }
+.body-line { font-size:clamp(15px,1.3vw,19px); color:rgba(28,41,38,0.7); margin-top:5vh; max-width:36em; line-height:1.7; }
+.bg-forest .body-line { color:rgba(250,247,241,0.85); }
+.meta-foot { position:absolute; bottom:5vh; left:var(--side-pad); display:flex; align-items:baseline; gap:1.5rem; font-size:clamp(11px,0.85vw,13px); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-foreground); z-index:3; }
+.meta-foot::before { content:''; display:block; width:2.5rem; height:1px; background:var(--muted-foreground); }
+.bg-forest .meta-foot { color:rgba(250,247,241,0.7); }
+.bg-forest .meta-foot::before { background:rgba(250,247,241,0.7); }
+.bg-cream  { background:var(--background); }
+.bg-card   { background:var(--card); }
+.bg-linen  { background:var(--linen); }
+.bg-forest { background:var(--secondary); color:var(--background); }
+.title-card-centered { align-items:center; justify-content:center; }
+.title-card-centered .col { margin-left:auto; margin-right:auto; text-align:center; }
+.title-card-centered .eyebrow::after { content:''; display:block; width:2.5rem; height:1px; background:var(--rose); }
+.title-card-centered .meta-foot { left:50%; transform:translateX(-50%); white-space:nowrap; }
+.tools-card .col { max-width:100%; }
+.tools-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; margin-top:4vh; }
+.tools-grid.three { grid-template-columns:repeat(3,1fr); max-width:60rem; }
+.tool-cell { background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1.75rem 2rem; box-shadow:var(--shadow-soft); display:flex; flex-direction:column; }
+.bg-forest .tool-cell { background:rgba(250,247,241,0.08); border-color:rgba(250,247,241,0.15); }
+.chapter-marker { display:flex; align-items:center; gap:0.875rem; margin-bottom:1.25rem; }
+.tool-num { font-family:'Fraunces',Georgia,serif; font-size:1.75rem; font-weight:600; color:var(--rose); line-height:1; }
+.tool-line { flex:1; height:1px; background:var(--rose); opacity:0.4; }
+.tool-title { font-family:'Fraunces',Georgia,serif; font-size:1.5rem; font-weight:600; letter-spacing:-0.02em; line-height:1.15; color:var(--foreground); margin-bottom:0.625rem; }
+.tool-sub { font-size:0.95rem; color:rgba(28,41,38,0.7); line-height:1.6; }
+.bg-forest .tool-title { color:var(--background); }
+.bg-forest .tool-sub { color:rgba(250,247,241,0.75); }
+.stat-num { font-family:'Fraunces',Georgia,serif; font-size:clamp(44px,4.5vw,72px); font-weight:600; color:var(--secondary); letter-spacing:-0.03em; line-height:1; margin-bottom:0.75rem; }
+.stat-src { font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--rose); padding-top:1rem; border-top:1px solid var(--border); margin-top:auto; }
+@media (max-width:1000px) { .tools-grid, .tools-grid.three { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:700px)  { .tools-grid, .tools-grid.three { grid-template-columns:1fr; } }
+.session-list { list-style:none; margin-top:2.5vh; max-width:42em; }
+.session-list li { font-size:clamp(15px,1.25vw,18px); color:rgba(28,41,38,0.8); line-height:1.55; padding:0.7rem 0; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:1rem; }
+.session-list li:last-child { border-bottom:none; }
+.bg-forest .session-list li { color:rgba(250,247,241,0.85); border-bottom-color:rgba(250,247,241,0.15); }
+.session-num { font-family:'Fraunces',Georgia,serif; font-size:1.1rem; font-weight:600; color:var(--rose); flex-shrink:0; min-width:1.6rem; }
+.check-list { list-style:none; max-width:54rem; margin-top:3vh; }
+.check-list li { display:grid; grid-template-columns:2.75rem 1fr; gap:1rem; align-items:baseline; padding:1.1rem 0; border-bottom:1px solid var(--border); }
+.check-list li:last-child { border-bottom:none; }
+.check-num { font-family:'Fraunces',Georgia,serif; font-size:1.15rem; font-weight:600; color:var(--rose); line-height:1; padding-top:0.1rem; }
+.check-body { font-size:clamp(14px,1.1vw,16px); color:rgba(28,41,38,0.85); line-height:1.6; }
+.check-body strong { color:var(--foreground); font-weight:600; }
+.qr-frame { margin-top:5vh; width:min(34vh,300px); height:min(34vh,300px); border:2px dashed var(--border); border-radius:1.5rem; display:flex; align-items:center; justify-content:center; background:var(--card); font-family:'Fraunces',Georgia,serif; font-style:italic; color:var(--muted-foreground); text-align:center; padding:2rem; line-height:1.5; box-shadow:var(--shadow-soft); }
+.build-step { opacity:0; transition:opacity 0.45s ease; pointer-events:none; }
+.build-step.revealed { opacity:1; pointer-events:auto; }
+.close-card .main-line { font-family:'Fraunces',Georgia,serif; font-weight:600; letter-spacing:-0.025em; font-size:clamp(28px,3.8vw,56px); line-height:1.18; max-width:22ch; }
+.footer-bar { position:fixed; bottom:0; left:0; right:0; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted-foreground); pointer-events:none; z-index:10; transition:opacity 0.3s; }
+body.presenting .footer-bar { opacity:0; }
+body.presenting .footer-bar:hover { opacity:1; }
+.footer-bar .counter, .footer-bar .hint { background:var(--card); border:1px solid var(--border); border-radius:9999px; padding:6px 14px; box-shadow:var(--shadow-soft); }
+.footer-bar .hint { pointer-events:auto; cursor:pointer; }
+.progress { position:fixed; top:16px; right:20px; display:flex; gap:8px; z-index:10; opacity:0.5; transition:opacity 0.3s; }
+body.presenting .progress { opacity:0; }
+.progress .dot { width:8px; height:8px; background:var(--card); border:1px solid var(--border); border-radius:50%; cursor:pointer; }
+.progress .dot.active { background:var(--rose); border-color:var(--rose); }
+.help-overlay { position:fixed; inset:0; background:rgba(28,41,38,0.92); display:none; align-items:center; justify-content:center; z-index:100; padding:40px; backdrop-filter:blur(4px); }
+.help-overlay.show { display:flex; }
+.help-overlay .help-box { background:var(--card); color:var(--foreground); border:1px solid var(--border); border-radius:1rem; padding:40px 48px; max-width:540px; box-shadow:var(--shadow-warm); }
+.help-overlay h3 { font-family:'Fraunces',Georgia,serif; font-weight:600; letter-spacing:-0.02em; font-size:2rem; margin-bottom:1.5rem; }
+.help-overlay kbd { background:var(--linen); border:1px solid var(--border); border-radius:0.5rem; padding:3px 10px; font-size:13px; font-weight:500; margin:0 2px; }
+.help-overlay p { margin-bottom:0.75rem; font-size:0.95rem; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+<!-- 1 · TITLE -->
+<section class="card bg-forest title-card-centered active">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">A working session with your leadership team</div>
+    <h1 class="display h-xl">The Alignment<br><span class="italic-accent">Room.</span></h1>
+    <p class="subline">Where your AI plans start agreeing with each other.</p>
+  </div>
+  <div class="meta-foot"><span class="client-name">Foundation Education Group</span> &middot; half a day &middot; with Jeanna Manifold</div>
+</section>
+
+<!-- 2 · WHY WE'RE HERE -->
+<section class="card bg-cream">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Why we're here</div>
+    <h2 class="display h-l">Everyone can feel AI matters.<br><span class="italic-accent">Saying why is harder.</span></h2>
+    <p class="body-line">You want AI working in the business. Before any tool gets picked, three questions need answers your whole leadership team owns: what is AI for here, in what order do we act, and which decisions stay with people. That is today's work.</p>
+  </div>
+</section>
+
+<!-- 3 · FIVE ANSWERS -->
+<section class="card bg-card">
+  <div class="wordmark">vooee</div>
+  <div class="numeral-anchor right">5</div>
+  <div class="col">
+    <div class="eyebrow">The starting point</div>
+    <h2 class="display h-l">Ask five leaders why the business wants AI.</h2>
+    <p class="subline">You will often hear five different answers.</p>
+    <p class="body-line">That is normal, and nobody is wrong. It is also why AI plans stall: not the technology, the misalignment underneath it. Today we surface it on purpose, while it is cheap to fix.</p>
+  </div>
+</section>
+
+<!-- 4 · THE EVIDENCE -->
+<section class="card bg-linen tools-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">You are not behind</div>
+    <h2 class="display h-m">The gap is normal. Leaving it unexamined is the risk.</h2>
+    <div class="tools-grid three">
+      <div class="tool-cell build-step">
+        <div class="stat-num">52%</div>
+        <p class="tool-sub">of employees say AI leaves them anxious or overwhelmed. Clarity from leadership is what changes that.</p>
+        <div class="stat-src">Section, 2026</div>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="stat-num">35%</div>
+        <p class="tool-sub">of Australian workers have had formal AI training, while two in three small businesses already use AI.</p>
+        <div class="stat-src">EY Australia, 2025</div>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="stat-num">~1%</div>
+        <p class="tool-sub">of executives call their organisation AI mature. The constraint they name is leadership, not technology.</p>
+        <div class="stat-src">McKinsey, 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · WHY A POSITION -->
+<section class="card bg-cream">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Why an AI position</div>
+    <h2 class="display h-l">One agreed paragraph<br><span class="italic-accent">beats a strategy deck.</span></h2>
+    <ul class="session-list">
+      <li class="build-step"><span class="session-num">1</span>When the why is written down and agreed, every tool decision has a test it must pass.</li>
+      <li class="build-step"><span class="session-num">2</span>Your team stops guessing what leadership wants, and stops quietly deciding for themselves.</li>
+      <li class="build-step"><span class="session-num">3</span>Budgets, priorities and no's all get easier, because they trace back to one sentence you all own.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6 · WHY GROUND RULES -->
+<section class="card bg-forest">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Why ground rules</div>
+    <h2 class="display h-l">Rules keep you safe.<br><span class="italic-accent">Fluency makes you fast.</span></h2>
+    <p class="body-line">Most AI use is fine. The risk lives in the exceptions: the client email with personal details pasted into a free tool, the auto-reply that misfires, the answer that sounded confident and was wrong. Ground rules decide once, deliberately, where a person must stay in the loop. Businesses with clear ground rules use AI more, because nobody is guessing.</p>
+  </div>
+</section>
+
+<!-- 7 · THE FOUR QUESTIONS -->
+<section class="card bg-card tools-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">The whole of AI governance, in plain English</div>
+    <h2 class="display h-m">Four questions. That's the framework.</h2>
+    <div class="tools-grid">
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">1</span><span class="tool-line"></span></div>
+        <div class="tool-title">Who decides?</div>
+        <p class="tool-sub">One accountable person, named. Ambiguity is the actual risk.</p>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">2</span><span class="tool-line"></span></div>
+        <div class="tool-title">Where do we need a human gate?</div>
+        <p class="tool-sub">High stakes and high speed need rules before launch. The rest needs a lighter touch.</p>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">3</span><span class="tool-line"></span></div>
+        <div class="tool-title">How do we know it works?</div>
+        <p class="tool-sub">Test before you trust, with your own real examples.</p>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">4</span><span class="tool-line"></span></div>
+        <div class="tool-title">What's the plan for a bad day?</div>
+        <p class="tool-sub">Stop, tell, assess, fix. Decided now, not mid-incident.</p>
+      </div>
+    </div>
+    <p class="body-line">These track the NIST AI Risk Management Framework and Australia's responsible AI guidance. You don't need to know either. That's my job; answering the questions is yours.</p>
+  </div>
+</section>
+
+<!-- 8 · WHAT TODAY PRODUCES -->
+<section class="card bg-cream checklist-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">What today produces</div>
+    <h2 class="display h-m">You leave with four things.</h2>
+    <ul class="check-list">
+      <li class="build-step"><span class="check-num">01</span><span class="check-body"><strong>An AI position</strong> your whole leadership team has agreed to, in your own words.</span></li>
+      <li class="build-step"><span class="check-num">02</span><span class="check-body"><strong>A 90-day roadmap:</strong> what to do, in what order, and what to leave alone.</span></li>
+      <li class="build-step"><span class="check-num">03</span><span class="check-body"><strong>The first draft of your AI ground rules,</strong> built from what this room says today.</span></li>
+      <li class="build-step"><span class="check-num">04</span><span class="check-body"><strong>A summary of where you align</strong> and which questions are still open, for the record.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9 · HOW TODAY RUNS -->
+<section class="card bg-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">How today runs</div>
+    <h2 class="display h-m">Six moves, one afternoon.</h2>
+    <ul class="session-list">
+      <li><span class="session-num">1</span>The why. You are in it now.</li>
+      <li><span class="session-num">2</span>Your answers, given individually. Yours, not the company's.</li>
+      <li><span class="session-num">3</span>A short break, while we do some work with what you said.</li>
+      <li><span class="session-num">4</span>Where you align, where you differ. The interesting part.</li>
+      <li><span class="session-num">5</span>Drafting, together: your position and your ground rules.</li>
+      <li><span class="session-num">6</span>The roadmap, and what happens next.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10 · ROOM AGREEMENTS -->
+<section class="card bg-forest">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Before we start</div>
+    <h2 class="display h-l">Three agreements<br><span class="italic-accent">for the next few hours.</span></h2>
+    <ul class="session-list">
+      <li class="build-step"><span class="session-num">1</span>Honest answers beat polished ones. The polished version is why we're here.</li>
+      <li class="build-step"><span class="session-num">2</span>Every view goes on the table. Disagreement today is cheap; disagreement in month six is not.</li>
+      <li class="build-step"><span class="session-num">3</span>Nothing you write is shown with your name on it unless you say so.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 11 · YOUR TURN -->
+<section class="card bg-cream title-card-centered">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Over to you</div>
+    <h2 class="display h-xl">Your <span class="italic-accent">turn.</span></h2>
+    <p class="subline">Answer as yourself, not as the company.</p>
+    <div class="qr-frame" style="margin-left:auto; margin-right:auto;">QR code goes here when the session link is live</div>
+  </div>
+  <div class="meta-foot">There are no wrong answers. Only real ones.</div>
+</section>
+
+<!-- 12 · BREAK -->
+<section class="card bg-forest title-card-centered">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Intermission</div>
+    <h2 class="display h-l">Take a break.<br><span class="italic-accent">We'll get to work on what you said.</span></h2>
+    <p class="body-line" style="margin-left:auto;margin-right:auto;">When you come back: where you agree, where you differ, and what your own words say about the way forward.</p>
+  </div>
+</section>
+
+<!-- 13 · THE REVEAL -->
+<section class="card bg-cream title-card-centered">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Part two</div>
+    <h2 class="display h-l">What you <span class="italic-accent">told us.</span></h2>
+    <p class="body-line" style="margin-left:auto;margin-right:auto;">From here, the screen belongs to your answers.</p>
+  </div>
+</section>
+
+<!-- 14 · DECISIONS THAT STAY HUMAN -->
+<section class="card bg-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">The lines that don't move</div>
+    <h2 class="display h-l">Some decisions should<br><span class="italic-accent">always stay with a person.</span></h2>
+    <p class="body-line">Hiring. Pricing exceptions. Anything touching health, money or reputation. Whatever the tool promises. We name yours today, and they go into the ground rules as the short list that never bends.</p>
+  </div>
+</section>
+
+<!-- 15 · DRAFTING -->
+<section class="card bg-linen">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Drafting, together</div>
+    <h2 class="display h-l">Now we <span class="italic-accent">write it down.</span></h2>
+    <p class="subline">Your position. Your ground rules. Your words.</p>
+    <p class="body-line">Drafted live from what this room said, edited aloud, and owned by everyone in it. If a line doesn't sound like this business, we change it before it leaves the room.</p>
+  </div>
+</section>
+
+<!-- 16 · THE ROADMAP -->
+<section class="card bg-cream tools-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">The last hour</div>
+    <h2 class="display h-m">Ninety days, three columns.</h2>
+    <div class="tools-grid three">
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">1</span><span class="tool-line"></span></div>
+        <div class="tool-title">Do now</div>
+        <p class="tool-sub">The work with the clearest value and the least risk. Started within the month.</p>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">2</span><span class="tool-line"></span></div>
+        <div class="tool-title">Do next</div>
+        <p class="tool-sub">Worth doing, once the first column has taught you something.</p>
+      </div>
+      <div class="tool-cell build-step">
+        <div class="chapter-marker"><span class="tool-num">3</span><span class="tool-line"></span></div>
+        <div class="tool-title">Leave alone</div>
+        <p class="tool-sub">Deliberately. A roadmap that can say no is a roadmap you can trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 · CLOSE -->
+<section class="card bg-forest title-card-centered close-card">
+  <div class="wordmark">vooee</div>
+  <div class="col">
+    <div class="eyebrow">Where this lands</div>
+    <p class="main-line display">Alignment first. Tools second.<br><span class="italic-accent">You now have a position, and a plan.</span></p>
+    <p class="body-line" style="margin-left:auto;margin-right:auto;">Your roadmap, drafted ground rules and session summary arrive in writing within the week. What happens after that is in the roadmap, in your words.</p>
+  </div>
+  <div class="meta-foot">vooee &middot; vooee.au &middot; jeanna@vooee.au</div>
+</section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="footer-bar">
+  <div class="counter"><span id="counter-current">1</span> / <span id="counter-total"></span></div>
+  <div class="hint" onclick="showHelp()">? &middot; keys</div>
+</div>
+<div class="help-overlay" id="help">
+  <div class="help-box">
+    <h3>Presenting</h3>
+    <p><kbd>&rarr;</kbd> <kbd>Space</kbd> next step or card &middot; <kbd>&larr;</kbd> back</p>
+    <p><kbd>F</kbd> fullscreen &middot; <kbd>P</kbd> presenter mode (hides chrome)</p>
+    <p><kbd>Home</kbd> first card &middot; <kbd>End</kbd> last card</p>
+    <p class="close-hint">Click anywhere to close</p>
+  </div>
+</div>
+
+<script>
+const CLIENT = 'Foundation Education Group';
+document.querySelectorAll('.client-name').forEach(el => el.textContent = CLIENT);
+
+const cards = Array.from(document.querySelectorAll('.card'));
+const total = cards.length;
+let current = 0;
+const progress = document.getElementById('progress');
+cards.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot';
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goTo(i));
+  progress.appendChild(dot);
+});
+document.getElementById('counter-total').textContent = total;
+function goTo(index) {
+  if (index < 0 || index >= total) return;
+  cards[current].querySelectorAll('.build-step').forEach(s => s.classList.remove('revealed'));
+  cards[current].classList.remove('active');
+  document.querySelectorAll('.progress .dot')[current].classList.remove('active');
+  current = index;
+  cards[current].classList.add('active');
+  document.querySelectorAll('.progress .dot')[current].classList.add('active');
+  document.getElementById('counter-current').textContent = current + 1;
+}
+function next() {
+  const unrevealed = Array.from(cards[current].querySelectorAll('.build-step:not(.revealed)'));
+  if (unrevealed.length > 0) { unrevealed[0].classList.add('revealed'); } else { goTo(current + 1); }
+}
+function prev() { goTo(current - 1); }
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  const h = document.getElementById('help');
+  if (h.classList.contains('show')) { h.classList.remove('show'); return; }
+  switch (e.key) {
+    case 'ArrowRight': case ' ': case 'Enter': e.preventDefault(); next(); break;
+    case 'ArrowLeft': e.preventDefault(); prev(); break;
+    case 'Home': e.preventDefault(); goTo(0); break;
+    case 'End': e.preventDefault(); goTo(total - 1); break;
+    case 'f': case 'F':
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+      else document.exitFullscreen();
+      break;
+    case 'p': case 'P': document.body.classList.toggle('presenting'); break;
+    case '?': showHelp(); break;
+    case 'Escape': document.exitFullscreen && document.exitFullscreen().catch(() => {}); break;
+  }
+});
+document.getElementById('stage').addEventListener('click', e => {
+  if (!e.target.closest('.progress') && !e.target.closest('.footer-bar') && !e.target.closest('.help-overlay')) next();
+});
+function showHelp() { document.getElementById('help').classList.add('show'); }
+document.getElementById('help').addEventListener('click', e => {
+  if (e.target === document.getElementById('help')) document.getElementById('help').classList.remove('show');
+});
+</script>
+</body>
+</html>
